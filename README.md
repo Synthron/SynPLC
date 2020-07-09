@@ -1,3 +1,3 @@
-# MicroSPS
+# SynPLC
 
-SPS with MicroControllers
+PLC with MicroControllers
