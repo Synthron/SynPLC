@@ -1,0 +1,140 @@
+% --------------------------------------------------------------------
+% Technical Documentation
+% Marco Müller
+% --------------------------------------------------------------------
+
+\documentclass[11pt, a4paper, listof=numbered, captions=tableheading, headinclude, table, xcdraw]{scrreprt}
+
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage{tikz}
+\usepackage{epigraph}
+%\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{textgreek}
+\usepackage[LGRgreek]{mathastext}
+\usepackage{array}
+\usepackage{color}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{helvet}
+\usepackage{scrhack}
+\renewcommand{\familydefault}{\sfdefault}
+
+\setlength{\emergencystretch}{\hsize}
+%\tolerance=9999
+
+\newcounter{divide}
+
+% für referenziertes Inhaltsverzeichnis
+\usepackage[hidelinks, hypertexnames=false]{hyperref}
+
+\usepackage{chngcntr}
+\counterwithin*{chapter}{divide}
+
+\renewcommand\epigraphflush{flushright}
+\renewcommand\epigraphsize{\normalsize}
+\setlength\epigraphwidth{0.7\textwidth}
+
+\definecolor{titlepagecolor1}{cmyk}{1,.39,.0,.27}
+\definecolor{titlepagecolor}{cmyk}{0,.82,.78,.30}
+
+\DeclareFixedFont{\titlefont}{T1}{ppl}{b}{it}{0.5in}
+
+\setlength{\parindent}{0pt}
+
+
+% Seitenränder festlegen
+\usepackage[top=1.5cm,bottom=1.5cm, includeheadfoot]{geometry}
+
+% Blindtext für Testzwecke
+%\usepackage{blindtext}
+%\usepackage{lipsum}
+
+% ---------------------------------------
+% Titeldefinition
+\newcommand{\Titel}{Dokumentation\\\vspace{.5mm}SynPLC}
+\newcommand{\Caption}{Eine Selbstbau-SPS (oder so ähnlich)}
+\newcommand{\SignateAuthor}{\textit{Erstellt mit \LaTeX}}
+\newcommand{\Stand}{\textit{Stand: \today}}
+% Sonstiges in titel.ltx und titel-meta.ltx
+% ---------------------------------------
+
+% Kopf- und Fußzeile
+\usepackage[automark]{scrlayer-scrpage}
+
+
+
+% --------------------------------------------------------------------
+% Titelblatt
+% --------------------------------------------------------------------
+
+\input{titel/titel-meta.tex}
+\begin{document}
+\input{titel/titel.tex}
+
+
+% --------------------------------------------------------------------
+% Verzeichnisse
+% --------------------------------------------------------------------
+
+\pagenumbering{Roman}
+\renewcommand{\thechapter}{\Roman{chapter}}
+
+\setcounter{tocdepth}{2} %Ausblenden von Subsections etc..
+\cohead[I. Inhaltsverzeichnis]{I. Inhaltsverzeichnis}
+\pagestyle{scrheadings}
+\tableofcontents 	\newpage
+\cohead[II. Tabellenverzeichnis]{II. Tabellenverzeichnis}
+\pagestyle{scrheadings}
+\listoffigures 		\newpage
+\cohead[III. Abbildungsverzeichnis]{III. Abbildungsverzeichnis}
+\pagestyle{scrheadings}
+\listoftables 		\newpage
+\pagenumbering{arabic}
+
+\stepcounter{divide}
+
+\renewcommand{\thechapter}{\arabic{chapter}}
+
+% Kopfzeilen erst nach den Verzeichnissen
+
+\lohead[\today]{\today}
+\cohead[ModLab V1.0]{ModLab V1.0}
+\rohead[Marco Müller]{Marco Müller}
+\pagestyle{scrheadings}
+
+% --------------------------------------------------------------------
+% Ab hier der Inhalt
+% --------------------------------------------------------------------
+
+\input{chapters/00-vorwort.tex} 			\newpage 	% Vorwort
+\input{chapters/10-busse.tex}				\newpage	% Bus Erklärung
+
+
+
+	
+
+% --------------------------------------------------------------------
+% abschließende Verzeichnisse
+% --------------------------------------------------------------------
+
+\pagestyle{empty}
+\vspace*{\fill}
+\begin{center}
+\hrulefill\\
+\vspace{4mm}
+	\begin{HUGE}
+		\textbf{ANHANG}
+	\end{HUGE}\\
+\hrulefill
+\end{center}
+\vspace*{\fill}
+\newpage
+\pagestyle{plain}
+
+
+\appendix
+
+% --------------------------------------------------------------------
+\end{document}

@@ -1,0 +1,50 @@
+\chapter{Vorwort}
+Die SynPLC ist eine Selbstbau-SPS, die nach und nach entwickelt und verfeinert wird. 
+
+Aktuell in Planung ist V1.0, die überwiegend aus AVR-Controllern und einem SAM3X-Prozessor als CPU besteht. 
+
+Folgende Module sind in V1.0 vorhanden:
+\begin{enumerate}
+    \item CPU-Modul
+    \begin{enumerate}
+        \item SAM3X8E-Prozessor mit 84MHz Takt
+        \item ESP-01-Modul für Webinterface und NTP
+        \item RTC onboard des Prozessors
+        \item I2C-Schnittstelle 
+        \item SD-Card-Adapter und SPI-Schnittstelle
+        \item Bus-Steuerung über RS485 oder CAN
+        \item Native USB-Schnittstelle 
+    \end{enumerate}
+    \item Digital-Modul OUTPUT
+    \begin{enumerate}
+        \item 24V Galvanisch getrennt
+        \item 8 Kanäle
+        \item Stromgeschützt
+        \item Automatische Fehler-Erkennung
+        \item Zustandsanzeige über LEDs auf Frontplatte
+    \end{enumerate}
+    \item Digital-Modul INPUT
+    \begin{enumerate}
+        \item 24V Galvanisch getrennt
+        \item 8 Kanäle
+        \item Eingänge geschützt gegen ESD, Überspannung, Burst/Surge, Verpolung
+        \item zustandsanzeige über LEDs auf Frontplatte
+    \end{enumerate}
+    \item Analog-Modul OUTPUT
+    \begin{enumerate}
+        \item galvanisch getrennt
+        \item 4 Kanäle
+        \item +/-10V; 0-10V; +/-5V; 0-5V
+        \item 4-20mA; 0-20mA; 0-24mA;
+        \item LEDs zeigen an, ob aktiv oder Fehler
+    \end{enumerate}
+    \item Analog-Modul INPUT
+    \begin{enumerate}
+        \item glavansisch getrennt
+        \item 4 Kanäle
+        \item entweder Spannung oder Strommessung, je nach Konfiguration
+        \item LEDs zeigen an ob aktiv
+    \end{enumerate}
+    \item PWM-Modul (noch in Planung)
+    \item Interface-Modul (Noch in Planung)
+\end{enumerate}
