@@ -1,0 +1,58 @@
+# default docker container for Arduino compiling
+image: zoobab/arduino-cli
+
+stages:
+  - latex
+#  - compile
+
+# Making the PDF easy to download as artifact, may deploy it back into the git some time later
+deploy-pdf:
+  stage: latex
+  script:
+    - cp LaTeX/tech-note.pdf documentation.pdf
+  artifacts:
+    paths:
+      - documentation.pdf
+  only:
+    changes:
+      - LaTeX/*
+
+
+# Compile and save the production files for the symmetric power supply. All files available as artifact
+#sym-lpsu:
+#  stage: compile
+#  before_script:
+#    - mkdir output-lpsu/
+#    - rm -R /tmp/arduino-sketch*
+#    - arduino-cli core install arduino:avr
+#  script:
+#    - arduino-cli compile -b arduino:avr:uno -v sym-lpsu
+#    - cp /tmp/arduino-sketch-*/sym-lpsu.ino.with_bootloader.hex output-lpsu/sym-lpsu_bootloader.hex
+#    - cp /tmp/arduino-sketch-*/sym-lpsu.ino.hex output-lpsu/sym-lpsu.hex
+#    - cp /tmp/arduino-sketch-*/sym-lpsu.ino.eep output-lpsu/sym-lpsu.eep
+#    - cp /tmp/arduino-sketch-*/sym-lpsu.ino.elf output-lpsu/sym-lpsu.elf
+#  artifacts:
+#    paths:
+#      - output-lpsu/
+#  only:
+#    changes:
+#      - sym-lpsu/*
+
+# Compile and save the production files for the DUE-Mainboard. All files available as artifact
+# These files need a different core and thus take longer to compile. Also different production files
+#due:
+#  stage: compile
+#  before_script:
+#    - mkdir output-due/
+#    - arduino-cli core install arduino:sam
+#  script:
+#    - arduino-cli compile -b arduino:sam:arduino_due_x -v mainboard-due
+#    - cp /tmp/arduino-sketch*/mainboard-due.ino.map output-due/firmware.map
+#    - cp /tmp/arduino-sketch*/mainboard-due.ino.bin output-due/firmware.bin
+#    - cp /tmp/arduino-sketch*/mainboard-due.ino.elf output-due/firmware.elf
+#  artifacts:
+#    paths:
+#      - output-due/
+#  only:
+#    changes:
+#      - mainboard-due/*
