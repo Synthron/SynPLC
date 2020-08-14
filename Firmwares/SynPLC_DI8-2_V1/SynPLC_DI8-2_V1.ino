@@ -14,7 +14,7 @@
 #define IN_EN 4
 
 //Codes für Protokoll
-#define reg_read 0x55
+#define reg_read 0x21
 #define ERR_INSTR 0xF1
 
 
@@ -41,14 +41,6 @@ void setup()
     pinMode(IN_Clk, OUTPUT);
     pinMode(IN_EN, OUTPUT);
 
-    digitalWrite(D0, LOW);
-    digitalWrite(D1, LOW);
-    digitalWrite(D2, LOW);
-    digitalWrite(D3, LOW);
-    digitalWrite(D4, LOW);
-    digitalWrite(D5, LOW);
-    digitalWrite(D6, LOW);
-    digitalWrite(D7, LOW);
     digitalWrite(ADR, HIGH);
     digitalWrite(DIR, LOW);
     digitalWrite(IN_Clk, LOW);
@@ -94,10 +86,10 @@ void get_adress()
     pinMode(D7, INPUT);
 */
     digitalWrite(ADR, LOW);
-    adr0 = digitalRead(D0);
-    adr1 = digitalRead(D1);
-    adr2 = digitalRead(D2);
-    adr3 = digitalRead(D3);
+    adr0 = !digitalRead(D0);
+    adr1 = !digitalRead(D1);
+    adr2 = !digitalRead(D2);
+    adr3 = !digitalRead(D3);
     adr4 = 1;
     adr5 = 0;
     adr6 = 0;
@@ -125,6 +117,7 @@ void check_and_send()
         //wait for rest of communication
         //send data
         digitalWrite(DIR, HIGH);
+        Serial.write(0xDD);
         Serial.write(reg_input);
         digitalWrite(DIR, LOW);
     }
@@ -133,6 +126,7 @@ void check_and_send()
         //wait for rest of communication
         //send data
         digitalWrite(DIR, HIGH);
+        Serial.write(0xEE);
         Serial.write(ERR_INSTR);
         digitalWrite(DIR, LOW);
     }
