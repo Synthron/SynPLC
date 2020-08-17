@@ -62,7 +62,7 @@ void loop()
         }
         else
         {
-            while(Serial.available)
+            while(Serial.available())
             {
                 dump = Serial.read();
             }
@@ -110,7 +110,7 @@ void read_Inputs()
 
 void check_and_send()
 {
-    while (!Serial.available);
+    while (!Serial.available());
     com_instr = Serial.read();
     if(com_instr == reg_read)
     {
