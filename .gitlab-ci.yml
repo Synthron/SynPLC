@@ -3,7 +3,7 @@ image: zoobab/arduino-cli
 
 stages:
   - latex
-#  - compile
+  - compile
 
 # Making the PDF easy to download as artifact, may deploy it back into the git some time later
 deploy-pdf:
