@@ -76,7 +76,7 @@ void loop()
 
     if(Serial.available())                      //Bei Datenverkehr
     {
-        com_adr = Serial.read();                //Schaue, ob dieses Gerät gemeint ist
+        byte com_adr = Serial.read();                //Schaue, ob dieses Gerät gemeint ist
         if (com_adr == adress) 
         {
             communication();                    //Wenn ja, springe in Kommunikationsroutine
