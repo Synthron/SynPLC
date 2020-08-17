@@ -19,24 +19,24 @@ deploy-pdf:
 
 
 # Compile and save the production files for the symmetric power supply. All files available as artifact
-#sym-lpsu:
-#  stage: compile
-#  before_script:
-#    - mkdir output-lpsu/
-#    - rm -R /tmp/arduino-sketch*
-#    - arduino-cli core install arduino:avr
-#  script:
-#    - arduino-cli compile -b arduino:avr:uno -v sym-lpsu
-#    - cp /tmp/arduino-sketch-*/sym-lpsu.ino.with_bootloader.hex output-lpsu/sym-lpsu_bootloader.hex
-#    - cp /tmp/arduino-sketch-*/sym-lpsu.ino.hex output-lpsu/sym-lpsu.hex
-#    - cp /tmp/arduino-sketch-*/sym-lpsu.ino.eep output-lpsu/sym-lpsu.eep
-#    - cp /tmp/arduino-sketch-*/sym-lpsu.ino.elf output-lpsu/sym-lpsu.elf
-#  artifacts:
-#    paths:
-#      - output-lpsu/
-#  only:
-#    changes:
-#      - sym-lpsu/*
+DI8-2:
+  stage: compile
+  before_script:
+    - mkdir output-DI8-2_V1/
+    - rm -R /tmp/arduino-sketch*
+    - arduino-cli core install arduino:avr
+  script:
+    - arduino-cli compile -b arduino:avr:uno -v Firmwares/SynPLC_DI8-2_V1
+    - cp /tmp/arduino-sketch-*/SynPLC_DI8-2_V1.ino.with_bootloader.hex output-DI8-2/SynPLC_DI8-2_V1_bootloader.hex
+    - cp /tmp/arduino-sketch-*/SynPLC_DI8-2_V1.ino.hex output-DI8-2/SynPLC_DI8-2_V1.hex
+    - cp /tmp/arduino-sketch-*/SynPLC_DI8-2_V1.ino.eep output-DI8-2/SynPLC_DI8-2_V1.eep
+    - cp /tmp/arduino-sketch-*/SynPLC_DI8-2_V1.ino.elf output-DI8-2/SynPLC_DI8-2_V1.elf
+  artifacts:
+    paths:
+      - output-DI8-2_V1/
+  only:
+    changes:
+      - Firmwares/SynPLC_DI8-2_V1/*
 
 # Compile and save the production files for the DUE-Mainboard. All files available as artifact
 # These files need a different core and thus take longer to compile. Also different production files
