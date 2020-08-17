@@ -22,7 +22,7 @@ deploy-pdf:
 DI8-2:
   stage: compile
   before_script:
-    - mkdir output-DI8-2_V1/
+    - mkdir output-DI8-2/
     - rm -R /tmp/arduino-sketch*
     - arduino-cli core install arduino:avr
   script:
@@ -33,7 +33,7 @@ DI8-2:
     - cp /tmp/arduino-sketch-*/SynPLC_DI8-2_V1.ino.elf output-DI8-2/SynPLC_DI8-2_V1.elf
   artifacts:
     paths:
-      - output-DI8-2_V1/
+      - output-DI8-2/
   only:
     changes:
       - Firmwares/SynPLC_DI8-2_V1/*
