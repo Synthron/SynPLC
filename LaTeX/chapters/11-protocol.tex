@@ -1,8 +1,8 @@
 \newpage
 \subsection{Protokoll}
-Das Protokoll, welches über die RS485-Physik geht, ist relativ einfach, aber praktisch aufgebaut. Es bietet die Möglichkeit, den Bus u scannen um zu schauen, ob alle vorgegebenen Teilnehmer vorhanden sind, sowie Daten zu lesen und zu schreiben. Betrieben wird der Bus auf 250.000 Baud.
+Das Protokoll, welches über die RS485-Physik geht, ist relativ einfach, aber praktisch aufgebaut. Es bietet die Möglichkeit, den Bus zu scannen um zu schauen, ob alle vorgegebenen Teilnehmer vorhanden sind, sowie Daten zu lesen und zu schreiben. Betrieben wird der Bus auf 250.000 Baud.
 
-Aufgebaut ist es wie ein Multi-Master Bus, bei dem allerdings die CPU das ganze organisiert. Die eingebetteten Funktionen sind im Nachfolgenden einzeln erklärt.
+Aufgebaut ist es wie ein Single-Master Bus, bei dem allerdings die CPU alles organisiert. Die eingebetteten Funktionen sind im Nachfolgenden einzeln erklärt.
 
 Dabei ist zu bedenken, dass alle Befehle in den Slaves Register schreiben. Die Register werden nach dem Datentransfer in den Slaves ausgelesen und entsprechend verarbeitet. Eine Register-Map liegt jedem Modul der V1 bei.
 
@@ -22,8 +22,8 @@ Um sicherzustellen, dass die CPU zwischen verschiedenen Fehlern unterscheiden ka
     0xF7        &       110X XXXX \\ \hline
     0xFF        &                 \\ \hline
 \end{tabular}
-\caption{Adressen RS485}
-\label{tab:Adressen RS485}
+\caption{Fehlermeldungen CPU}
+\label{tab:Fehlermeldungen CPU}
 \end{table}
 
 \subsubsection{Scan/Ping}

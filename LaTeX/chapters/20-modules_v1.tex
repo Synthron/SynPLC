@@ -1,0 +1,37 @@
+\chapter{Module V1}
+\section{CPU}
+Die CPU ist das Herz der SPS. Sie basiert auf einem STM32F1-Controller und beinhaltet folgende Funktionen:
+
+\begin{itemize}
+    \item RS485 oder CAN Businterface
+    \item USB-Schnittstelle für seriellen Monitor
+    \item ESP01-Modul für Webinterface
+    \item SD-Kartenslot für Strukturierten Text
+    \item DC/DC-Converter als Stromversorgung
+\end{itemize}
+
+Die CPU selbst hat keine Adresse, die Slaves antworten immer direkt auf die Anfragen der CPU. 
+
+Der DCDC-Converter bietet einen ESD-geschützten 24V-Eingang und liefert 5V bei 10W Ausgangsleistung. Diese Spannung liegt am Busstecker an und versorgt die anderen Module.
+
+\section{DO}
+Das DO (Digital-Output) stellt 8 galvanisch getrennte 24V-Ausgänge mit einer Belastbarkeit von jeweils 0,5A zur Verfügung. Die 24V-Spannung wird extern angelegt. 
+
+Die LEDs auf der Frontplatte zeigen dabei den Status der Ausgänge an. Durch die Farbe lässt sich der Status ablesen:
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|c|c|}
+    \hline
+        Farbe   &   Bedeutung \\ \hline \hline
+        Aus     &   Ausgang low, kein Fehler \\ \hline
+        Grün    &   Ausgang high, kein Fehler \\ \hline
+        Rot     &   Ausgang low, FEHLER \\ \hline
+        Gelb    &   Ausgang high, FEHLER \\ \hline
+    \end{tabular}
+    \caption{LED-Status DO}
+\label{LED-Status DO}
+\end{table}
+
+Das DO hat einen Schutzmechanismus gegen Überlastung der Ausgänge. Wenn der Controller bemerkt, dass ein Ausgang kurzgeschlossen ist, wird dieser deaktiviert. Nun werden alle 100ms der Ausgang wieder aktiviert und nachgeschaut, ob der Kurzschluss behoben wurde. Wenn ja, bleibt der Ausgang aktiviert, wenn nicht, wird das "Polling" fortgesetzt, bis die CPU den Ausgang deaktiviert. 
+
+Während einem aktiven Fehler ist das jeweilige Bit im Fehlerspeicher gesetzt. Beim Zugriff der CPU auf das Modul wird dieser Speicher einmal pro Zyklus ausgelesen. 
