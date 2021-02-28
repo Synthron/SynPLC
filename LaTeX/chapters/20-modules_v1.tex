@@ -16,6 +16,7 @@ Der DCDC-Converter bietet einen ESD-geschützten 24V-Eingang und liefert 5V bei 
 
 \section{DO}
 Das DO (Digital-Output) stellt 8 galvanisch getrennte 24V-Ausgänge mit einer Belastbarkeit von jeweils 0,5A zur Verfügung. Die 24V-Spannung wird extern angelegt. 
+Gleichzeitig werden die Ausgänge rückgelesen, sodass der Status angezeigt werden kann.
 
 Die LEDs auf der Frontplatte zeigen dabei den Status der Ausgänge an. Durch die Farbe lässt sich der Status ablesen:
 \begin{table}[H]
@@ -35,3 +36,10 @@ Die LEDs auf der Frontplatte zeigen dabei den Status der Ausgänge an. Durch die
 Das DO hat einen Schutzmechanismus gegen Überlastung der Ausgänge. Wenn der Controller bemerkt, dass ein Ausgang kurzgeschlossen ist, wird dieser deaktiviert. Nun werden alle 100ms der Ausgang wieder aktiviert und nachgeschaut, ob der Kurzschluss behoben wurde. Wenn ja, bleibt der Ausgang aktiviert, wenn nicht, wird das "Polling" fortgesetzt, bis die CPU den Ausgang deaktiviert. 
 
 Während einem aktiven Fehler ist das jeweilige Bit im Fehlerspeicher gesetzt. Beim Zugriff der CPU auf das Modul wird dieser Speicher einmal pro Zyklus ausgelesen. 
+
+\section{DI}
+Das DI bietet 8 galvanisch getrennte Eingänge mit ESD-Schutz. Ein High-Pegel wird ab einer Eingangsspannung von ca. 7V erkannt. Die Eingänge sind bis 33V spannungsfest und verbrauchen einen Maximalstrom von 2mA. 
+
+Auf der Frontplatte ist eine LED je Kanal, welche den Status anzeigt. 
+
+\section{AO}

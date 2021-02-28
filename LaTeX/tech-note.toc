@@ -16,3 +16,5 @@
 \contentsline {chapter}{\numberline {3}Module V1}{5}{chapter.19}
 \contentsline {section}{\numberline {3.1}CPU}{5}{section.20}
 \contentsline {section}{\numberline {3.2}DO}{5}{section.21}
+\contentsline {section}{\numberline {3.3}DI}{6}{section.23}
+\contentsline {section}{\numberline {3.4}AO}{6}{section.24}
