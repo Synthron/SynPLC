@@ -1,60 +1,136 @@
-\newpage
-\subsection{Protokoll}
-Das Protokoll, welches über die RS485-Physik geht, ist relativ einfach, aber praktisch aufgebaut. Es bietet die Möglichkeit, den Bus zu scannen um zu schauen, ob alle vorgegebenen Teilnehmer vorhanden sind, sowie Daten zu lesen und zu schreiben. Betrieben wird der Bus auf 250.000 Baud.
+\chapter{Protokoll RS485}
 
-Aufgebaut ist es wie ein Single-Master Bus, bei dem allerdings die CPU alles organisiert. Die eingebetteten Funktionen sind im Nachfolgenden einzeln erklärt.
+Hier wird das Protokoll der RS485-Schnittstelle beschrieben.
 
-Dabei ist zu bedenken, dass alle Befehle in den Slaves Register schreiben. Die Register werden nach dem Datentransfer in den Slaves ausgelesen und entsprechend verarbeitet. Eine Register-Map liegt jedem Modul der V1 bei.
+\section{Genereller Aufbau}
 
-\subsubsection{Error-Meldungen}
-Um sicherzustellen, dass die CPU zwischen verschiedenen Fehlern unterscheiden kann, werden hier die Error-Codes definiert, die die Module unter sich senden können. 
-\begin{table}[h]
+\subsection{Baudrate}
+
+Der RS485-Bus wird mit einer Baudrate von 250.000 Baud betrieben. Ein Upgrade auf 500.000 Baud wird offen gehalten.
+
+\section{Protokoll}
+\subsection{Ablauf}
+Je gesamtem Frame (eine erfolgreiche Datenübertragung) werden 3-5 Byte übertragen. Dieses Frame setzt sich wie folgt zusammen:
+\begin{itemize}
+    \item von CPU:
+    \begin{enumerate}
+        \item Slave-Adresse (1 Byte)
+        \item Befehl und Register (1 Byte)
+        \item Daten (1 oder 2 Byte)
+    \end{enumerate}
+    \item von Slave
+    \begin{enumerate}
+        \item ACK und Fehlercode (1 Byte)
+    \end{enumerate}
+\end{itemize}
+
+Je nach Slave können mehrere Frames für die vollständige Datenübertragung vonnöten sein. 
+
+\subsection{Slave-Adresse}
+Die Slave-Adresse besteht aus 2 Teilen:
+\begin{itemize}
+    \item Modul-Identifier (3 bit)
+    \item Adresse ( 5 bit)
+\end{itemize}
+
+Der Modul-Identifier ist in Software festgelegt und bezeichnet die Art des Moduls:
+
+\begin{table}[H]
     \centering
-\begin{tabular}{|c|c|}
-    \hline
-    Fehlercode  &       Bedeutung \\ \hline \hline
-    0xF1        &       Block-Write Overflow \\ \hline
-    0xF2        &       Byte Read Error \\ \hline
-    0xF3        &       Word Read Error \\ \hline
-    0xF4        &       011X XXXX \\ \hline
-    0xF5        &       100X XXXX \\ \hline
-    0xF6        &       101X XXXX \\ \hline
-    0xF7        &       110X XXXX \\ \hline
-    0xFF        &                 \\ \hline
-\end{tabular}
-\caption{Fehlermeldungen CPU}
-\label{tab:Fehlermeldungen CPU}
+        \begin{tabular}{|c|c|}
+            \hline
+            Identifier & Modul \\ \hline \hline
+            000 & Digital Input \\ \hline
+            001 & Digital Output \\ \hline
+            010 & Analog Input \\ \hline
+            011 & Analog Output \\ \hline
+            100 & PWM Modul \\ \hline
+            101 & Thyristor Modul \\ \hline
+            110 & Relais Modul \\ \hline
+            111 & \textit{reserviert}    \\ \hline
+        \end{tabular}
 \end{table}
 
-\subsubsection{Scan/Ping}
-Um zu schauen, ob ein Teilnehmer auf einer Adresse allgemein anwesend ist, kann man den Ping-Command senden. Dieser dient auch dazu, am Anfang den Bus zu überprüfen, ob alle notwendigen (einprogrammierten) Slaves verfügbar sind.
+Die 5bit-Adresse wird über die Codierschalter am Slave vorgenommen.
 
-\begin{figure}[H]
+\subsection{Befehl und Register}
+
+Die Befehle und Register werden in einem Byte zusammengeführt. Beide Teile sind je 4 bit lang. Die Befehle setzen sich dabei wie folgt zusammen:
+
+\begin{table}[H]
     \centering
-    \includegraphics[width=\textwidth]{pictures/ping_protocol.png}
-    \caption{Ping-Befehl}
-    \label{img:Ping}
-\end{figure}
+        \begin{tabular}{|c|c|}
+            \hline
+            Befehl-Code & Befehl \\ \hline \hline
+            0000 xxxx   & Bus Scanning (ist der Slave anwesend?) - kein Datenbyte \\ \hline
+            0001 (reg)  & Lese 8bit-Register\\ \hline
+            0010 (reg)  & Schreibe 8bit-Register \\ \hline
+            0100 xxxx   & Lese Fehler-Register \\ \hline
+            0101 (reg)  & Lese 16bit-Register \\ \hline
+            0110 (reg)  & schreibe 16bit-Register \\ \hline
+        \end{tabular}
+\end{table}
 
-Sobald der Master mit dem Senden des Befehls fertig ist, muss die Antwort nach spätestens 5ms angekommen sein. Ist dies nicht der Fall, so wird im Error-Register die entsprechende Flag gesetzt und das System geht in die Error-Routine.
+Die Register sind dabei modulabhängig. Folgend sind die Register aufgelistet:
 
-\subsubsection{Register Write Byte}
-Um ein 8bit-Register zu schreiben, sendet man nach der Slave-Adresse das Command-Byte 0x11, gefolgt von der Registernummer und den Daten. Dabei muss es sich um einen 8bit-Wert handeln. Als Acknowledge sendet der Slave den Wert an die CPU zurück.
+\subsubsection{Digital Output}
+\begin{table}[H]
+    \centering
+        \begin{tabular}{|c|c|}
+            \hline
+            Registeradresse & Funktion \\ \hline \hline
+            0001 & Output-Register \\ \hline
+            0010 & Input-Register \\ \hline
+            1111 & Fehlerregister \\ \hline
+        \end{tabular}
+\end{table}
 
-\subsubsection{Register Write Word}
-Um ein 16bit-Register zu schreiben, sendet man nach der Slave-Adresse das Com-mand-Byte 0x12, gefolgt von der Registernummer und den Daten. Dabei muss es sich um einen 16bit-Wert handeln. Als Acknowledge sendet der Slave das Low-Byte an die CPU zurück.
+\subsubsection{Digital Input}
+\begin{table}[H]
+    \centering
+        \begin{tabular}{|c|c|}
+            \hline
+            Registeradresse & Funktion \\ \hline \hline
+            0010 & Input-Register \\ \hline
+            1111 & Fehlerregister \\ \hline
+        \end{tabular}
+\end{table}
 
-\subsubsection{Register Write Block}
-Um mehrere aufeinanderfolgende register zu schreiben, sendet man nach der Slave-Adresse das Command-Byte 0x13, gefolgt von dem Start-Register und den Daten. Dabei werden die High-Bytes stehts zuerst gesendet, sollte es sich um Wörter statt Bytes handeln. Als Acknowledge sendet der Slave die Anzahl an Bytes, die geschrieben wurden, zurück.
+\subsubsection{Analog Output}
+\begin{table}[H]
+    \centering
+        \begin{tabular}{|c|c|}
+            \hline
+            Registeradresse & Funktion \\ \hline \hline
+            0001 & Channel-Enable-Register \\ \hline
+            0010 & Spannung Channel 1 (16 bit) \\ \hline
+            0011 & Strom Channel 1 (16 bit)\\ \hline
+            0100 & Spannung Channel 2 (16 bit)\\ \hline
+            0101 & Strom Channel 2 (16 bit)\\ \hline
+            0110 & Spannung Channel 3 (16 bit)\\ \hline
+            0111 & Strom Channel 3 (16 bit)\\ \hline
+            1001 & Spannung Channel 4 (16 bit)\\ \hline
+            1010 & Strom Channel 4 (16 bit)\\ \hline
+            1100 & Channel-Status-Register \\ \hline
+            1101 & Channel-Fehler-Register \\ \hline
+            1111 & Fehlerregister \\ \hline
+        \end{tabular}
+\end{table}
 
-Sollte der Slave nicht in der Lage sein, alle Bytes in Register zu schreiben, so werden die Register gefüllt und nachfolgende Bytes verworfen. Sobald der Master aufgehört hat zu senden, meldet der Slave den Error-Code 0xF1 an die CPU zurück.
+\subsection{ACK und Fehlercode}
+Damit sichergestellt werden kann, dass die Daten alle richtig empfangen wurden, werden ACK (Acknowledge) und Fehlercodes gesendet. Diese werden in einem Byte zusammen geschickt und bestehen aus je 4bit.
 
-\subsubsection{Register Read Byte}
-Um ein 8bit-Register zu lesen, sendet man nach der Slave-Adresse das Command-Byte 0x21, gefolgt von der Registernummer. Der Slave antwortet nach 1ms mit dem Wert des Registers. Ein Acknowledge von Seiten der CPU gibt es nicht. 
+Ein positives Acknowledge wird mit dem Hex-Code 5 (0101) codiert, ein negatives Acknowledge (NACK) wird mit A (1010) codiert. die Fehlercodes setzen sich dabei wie folgt zusammen:
 
-Sollte es dem Slave nicht möglich sein, aus dieser Registernummer zu lesen, so sendet er den Error-Code 0xF2
-
-\subsubsection{Register Read Word}
-Um ein 16bit-Register zu lesen, sendet man nach der Slave-Adresse das Command-Byte 0x22, gefolgt von der Registernummer. Der Slave antwortet nach 1ms mit dem Wert des Registers. Ein Acknowledge von Seiten der CPU gibt es nicht. 
-
-Sollte es dem Slave nicht möglich sein, aus dieser Registernummer zu lesen, so sendet er den Error-Code 0xF3
+\begin{table}[H]
+    \centering
+        \begin{tabular}{|c|c|}
+            \hline
+            Fehlercode & Bedeutung \\ \hline \hline
+            0000 & Kein Fehler \\ \hline
+            0001 & Ziel-Register nicht bekannt \\ \hline
+            0010 & Befehl nicht bekannt \\ \hline
+            1100 & Prozessfehler - Fehlerspeicher auslesen \\ \hline
+            1111 & Systemfehler - Fehlerspeicher auslesen \\ \hline
+        \end{tabular}
+\end{table}

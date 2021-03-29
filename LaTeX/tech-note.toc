@@ -1,20 +1,22 @@
 \babel@toc {ngerman}{}
-\contentsline {chapter}{\numberline {I}Abbildungsverzeichnis}{II}{chapter.2}
-\contentsline {chapter}{\numberline {II}Tabellenverzeichnis}{III}{chapter.3}
-\contentsline {chapter}{\numberline {1}Vorwort}{1}{chapter.4}
-\contentsline {chapter}{\numberline {2}Bus-Systeme}{2}{chapter.5}
-\contentsline {section}{\numberline {2.1}RS485}{2}{section.6}
-\contentsline {subsection}{\numberline {2.1.1}Adressen}{2}{subsection.7}
-\contentsline {subsection}{\numberline {2.1.2}Protokoll}{3}{subsection.9}
-\contentsline {subsubsection}{\nonumberline Error-Meldungen}{3}{section*.10}
-\contentsline {subsubsection}{\nonumberline Scan/Ping}{3}{section*.12}
-\contentsline {subsubsection}{\nonumberline Register Write Byte}{4}{section*.14}
-\contentsline {subsubsection}{\nonumberline Register Write Word}{4}{section*.15}
-\contentsline {subsubsection}{\nonumberline Register Write Block}{4}{section*.16}
-\contentsline {subsubsection}{\nonumberline Register Read Byte}{4}{section*.17}
-\contentsline {subsubsection}{\nonumberline Register Read Word}{4}{section*.18}
-\contentsline {chapter}{\numberline {3}Module V1}{5}{chapter.19}
-\contentsline {section}{\numberline {3.1}CPU}{5}{section.20}
-\contentsline {section}{\numberline {3.2}DO}{5}{section.21}
-\contentsline {section}{\numberline {3.3}DI}{6}{section.23}
-\contentsline {section}{\numberline {3.4}AO}{6}{section.24}
+\contentsline {chapter}{\numberline {I}Abbildungsverzeichnis}{II}{chapter.2}%
+\contentsline {chapter}{\numberline {II}Tabellenverzeichnis}{III}{chapter.3}%
+\contentsline {chapter}{\numberline {1}Vorwort}{1}{chapter.4}%
+\contentsline {chapter}{\numberline {2}Bus-Systeme}{2}{chapter.5}%
+\contentsline {chapter}{\numberline {3}Protokoll RS485}{3}{chapter.6}%
+\contentsline {section}{\numberline {3.1}Genereller Aufbau}{3}{section.7}%
+\contentsline {subsection}{\numberline {3.1.1}Baudrate}{3}{subsection.8}%
+\contentsline {section}{\numberline {3.2}Protokoll}{3}{section.9}%
+\contentsline {subsection}{\numberline {3.2.1}Ablauf}{3}{subsection.10}%
+\contentsline {subsection}{\numberline {3.2.2}Slave-Adresse}{3}{subsection.15}%
+\contentsline {subsection}{\numberline {3.2.3}Befehl und Register}{4}{subsection.16}%
+\contentsline {subsubsection}{\nonumberline Digital Output}{4}{subsubsection*.18}%
+\contentsline {subsubsection}{\nonumberline Digital Input}{4}{subsubsection*.20}%
+\contentsline {subsubsection}{\nonumberline Analog Output}{5}{subsubsection*.22}%
+\contentsline {subsection}{\numberline {3.2.4}ACK und Fehlercode}{5}{subsection.23}%
+\contentsline {chapter}{\numberline {4}Module V1}{6}{chapter.24}%
+\contentsline {section}{\numberline {4.1}CPU}{6}{section.25}%
+\contentsline {section}{\numberline {4.2}DO}{6}{section.26}%
+\contentsline {section}{\numberline {4.3}DI}{7}{section.28}%
+\contentsline {section}{\numberline {4.4}AO}{7}{section.29}%
+\providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 
