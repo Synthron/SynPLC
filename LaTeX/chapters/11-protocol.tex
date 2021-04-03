@@ -1,12 +1,32 @@
 \chapter{Protokoll RS485}
 
+
+!!! Anpassen !!!
+
+
+\begin{tabular}{lll}
+Frame & & \\
+&	byte 1:& 	Startbyte (0x5A) \\
+&	byte 2:&	Slave adress \\
+&	byte 3:& 	Instruction and register \\
+&	byte 4:& 	data (not send when instruction == Scan or read) \\
+&	byte 5:& 	data (only send when writing 16bit register) \\
+&	byte 6:& 	Checksum \\
+&&	\\
+&	byte 7:& 	Answer from slave (ACK or (NACK with Errorcode)) \\
+&	byte 8:& 	Answer from slave (data, 8bit read or MSB when 16bit read) \\
+&	byte 9:& 	Answer from slave (data, LSB when 16bit read) \\
+&	byte 10:& 	Answer from slave (Checksum) \\
+\end{tabular}
+
+
 Hier wird das Protokoll der RS485-Schnittstelle beschrieben.
 
 \section{Genereller Aufbau}
 
 \subsection{Baudrate}
 
-Der RS485-Bus wird mit einer Baudrate von 250.000 Baud betrieben. Ein Upgrade auf 500.000 Baud wird offen gehalten.
+Der RS485-Bus wird mit einer Baudrate von 250.000 Baud betrieben.
 
 \section{Protokoll}
 \subsection{Ablauf}
@@ -131,6 +151,7 @@ Ein positives Acknowledge wird mit dem Hex-Code 5 (0101) codiert, ein negatives 
             0001 & Ziel-Register nicht bekannt \\ \hline
             0010 & Befehl nicht bekannt \\ \hline
             1100 & Prozessfehler - Fehlerspeicher auslesen \\ \hline
+            1101 & Prüfsummenfehler - Sende erneut \\ \hline
             1111 & Systemfehler - Fehlerspeicher auslesen \\ \hline
         \end{tabular}
 \end{table}

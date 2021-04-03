@@ -8,7 +8,7 @@
 \contentsline {subsection}{\numberline {3.1.1}Baudrate}{3}{subsection.8}%
 \contentsline {section}{\numberline {3.2}Protokoll}{3}{section.9}%
 \contentsline {subsection}{\numberline {3.2.1}Ablauf}{3}{subsection.10}%
-\contentsline {subsection}{\numberline {3.2.2}Slave-Adresse}{3}{subsection.15}%
+\contentsline {subsection}{\numberline {3.2.2}Slave-Adresse}{4}{subsection.15}%
 \contentsline {subsection}{\numberline {3.2.3}Befehl und Register}{4}{subsection.16}%
 \contentsline {subsubsection}{\nonumberline Digital Output}{4}{subsubsection*.18}%
 \contentsline {subsubsection}{\nonumberline Digital Input}{4}{subsubsection*.20}%
