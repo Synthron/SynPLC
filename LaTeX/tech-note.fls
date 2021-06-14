@@ -1187,6 +1187,7 @@ INPUT g:/Repositories/microsps/LaTeX/tech-note.aux
 INPUT g:/Repositories/microsps/LaTeX/tech-note.out
 INPUT g:/Repositories/microsps/LaTeX/tech-note.out
 INPUT c:/texlive/2020/texmf-dist/fonts/enc/dvips/base/8r.enc
+INPUT c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb
 INPUT c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb
 INPUT c:/texlive/2020/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb
 INPUT c:/texlive/2020/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb

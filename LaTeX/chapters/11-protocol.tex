@@ -1,21 +1,17 @@
 \chapter{Protokoll RS485}
 
-
-!!! Anpassen !!!
-
-
 \begin{tabular}{lll}
 Frame & & \\
 &	byte 1:& 	Startbyte (0x5A) \\
 &	byte 2:&	Slave adress \\
 &	byte 3:& 	Instruction and register \\
 &	byte 4:& 	data (not send when instruction == Scan or read) \\
-&	byte 5:& 	data (only send when writing 16bit register) \\
+&	byte 5:& 	data (only send when writing 16bit (MSB) register) \\
 &	byte 6:& 	Checksum \\
 &&	\\
-&	byte 7:& 	Answer from slave (ACK or (NACK with Errorcode)) \\
-&	byte 8:& 	Answer from slave (data, 8bit read or MSB when 16bit read) \\
-&	byte 9:& 	Answer from slave (data, LSB when 16bit read) \\
+&	byte 7:& 	Answer from slave (ACK or (NACK $\vert$ Errorcode)) \\
+&	byte 8:& 	Answer from slave (data, 8bit read or LSB when 16bit read) \\
+&	byte 9:& 	Answer from slave (data, MSB when 16bit read) \\
 &	byte 10:& 	Answer from slave (Checksum) \\
 \end{tabular}
 
@@ -85,7 +81,6 @@ Die Befehle und Register werden in einem Byte zusammengeführt. Beide Teile sind
             0000 xxxx   & Bus Scanning (ist der Slave anwesend?) - kein Datenbyte \\ \hline
             0001 (reg)  & Lese 8bit-Register\\ \hline
             0010 (reg)  & Schreibe 8bit-Register \\ \hline
-            0100 xxxx   & Lese Fehler-Register \\ \hline
             0101 (reg)  & Lese 16bit-Register \\ \hline
             0110 (reg)  & schreibe 16bit-Register \\ \hline
         \end{tabular}
