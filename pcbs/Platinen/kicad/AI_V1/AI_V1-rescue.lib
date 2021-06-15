@@ -11,13 +11,14 @@ F3 "" -200 -100 50 H I C CNN
 DRAW
 S -150 50 -150 -50 0 1 0 N
 P 2 0 1 0 -50 50 -50 -50 N
+P 2 0 1 0 0 50 0 0 N
 P 2 0 1 0 50 0 -50 0 N
 P 2 0 1 0 150 50 150 -50 N
 P 3 0 1 0 -150 50 -50 0 -150 -50 N
 P 4 0 1 0 50 50 50 -50 150 0 50 50 N
 X ~ 1 -250 0 100 R 50 50 1 1 I
 X ~ 2 250 0 100 L 50 50 1 1 U
-X ~ 3 0 100 100 D 50 50 1 1 U
+X ~ 3 0 150 100 D 50 50 1 1 U
 ENDDRAW
 ENDDEF
 #
@@ -37,7 +38,7 @@ F9 "https://www.mouser.co.uk/ProductDetail/CUI-Devices/TBL009-500-02GY-2GY?qs=UX
 F10 "TBL009-500-02GY-2GY" 650 -700 50 H I L CNN "Arrow Part Number"
 F11 "https://www.arrow.com/en/products/tbl009-500-02gy-2gy/cui-devices?region=nac" 650 -800 50 H I L CNN "Arrow Price/Stock"
 DRAW
-P 5 0 1 6 200 100 600 100 600 -200 200 -200 200 100 N
+P 5 0 1 6 200 100 600 100 600 -200 200 -200 200 100 f
 X 1 1 0 -100 200 R 50 50 0 0 P
 X 2 2 0 0 200 R 50 50 0 0 P
 X 3 3 800 -100 200 L 50 50 0 0 P
