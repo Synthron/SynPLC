@@ -224,27 +224,6 @@ X 2 2 150 0 50 L 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
-# Device_Ferrite_Bead
-#
-DEF Device_Ferrite_Bead FB 0 0 N Y 1 F N
-F0 "FB" -150 25 50 V V C CNN
-F1 "Device_Ferrite_Bead" 150 0 50 V V C CNN
-F2 "" -70 0 50 V I C CNN
-F3 "" 0 0 50 H I C CNN
-$FPLIST
- Inductor_*
- L_*
- *Ferrite*
-$ENDFPLIST
-DRAW
-P 2 0 1 0 0 -50 0 -48 N
-P 2 0 1 0 0 50 0 51 N
-P 5 0 1 0 -109 16 -67 89 109 -12 66 -85 -109 16 N
-X ~ 1 0 150 100 D 50 50 1 1 P
-X ~ 2 0 -150 100 U 50 50 1 1 P
-ENDDRAW
-ENDDEF
-#
 # Device_LED
 #
 DEF Device_LED D 0 40 N N 1 F N
@@ -628,7 +607,7 @@ F9 "https://www.mouser.co.uk/ProductDetail/CUI-Devices/TBL009-500-02GY-2GY?qs=UX
 F10 "TBL009-500-02GY-2GY" 650 -700 50 H I L CNN "Arrow Part Number"
 F11 "https://www.arrow.com/en/products/tbl009-500-02gy-2gy/cui-devices?region=nac" 650 -800 50 H I L CNN "Arrow Price/Stock"
 DRAW
-P 5 0 1 6 200 100 600 100 600 -200 200 -200 200 100 f
+P 5 0 1 6 200 100 600 100 600 -200 200 -200 200 100 N
 X 1 1 0 -100 200 R 50 50 0 0 P
 X 2 2 0 0 200 R 50 50 0 0 P
 X 3 3 800 -100 200 L 50 50 0 0 P
@@ -768,19 +747,6 @@ F3 "" 0 0 50 H I C CNN
 DRAW
 P 6 0 1 0 0 0 0 -50 50 -50 0 -100 -50 -50 0 -50 N
 X GND2 1 0 0 0 D 50 50 1 1 W N
-ENDDRAW
-ENDDEF
-#
-# power_PWR_FLAG
-#
-DEF power_PWR_FLAG #FLG 0 0 N N 1 F P
-F0 "#FLG" 0 75 50 H I C CNN
-F1 "power_PWR_FLAG" 0 150 50 H V C CNN
-F2 "" 0 0 50 H I C CNN
-F3 "" 0 0 50 H I C CNN
-DRAW
-P 6 0 1 0 0 0 0 50 -40 75 0 100 40 75 0 50 N
-X pwr 1 0 0 0 U 50 50 0 0 w
 ENDDRAW
 ENDDEF
 #

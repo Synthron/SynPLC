@@ -151,8 +151,6 @@ $EndComp
 Wire Wire Line
 	13550 1250 13750 1250
 Wire Wire Line
-	13750 1250 13750 850 
-Wire Wire Line
 	13750 850  14200 850 
 Connection ~ 13750 1250
 Wire Wire Line
@@ -466,8 +464,6 @@ $EndComp
 Wire Wire Line
 	13550 2900 13750 2900
 Wire Wire Line
-	13750 2900 13750 2500
-Wire Wire Line
 	13750 2500 14200 2500
 Connection ~ 13750 2900
 Wire Wire Line
@@ -778,8 +774,6 @@ $EndComp
 Wire Wire Line
 	13550 4550 13750 4550
 Wire Wire Line
-	13750 4550 13750 4150
-Wire Wire Line
 	13750 4150 14200 4150
 Connection ~ 13750 4550
 Wire Wire Line
@@ -1089,8 +1083,6 @@ F 3 "~" H 13750 6350 50  0001 C CNN
 $EndComp
 Wire Wire Line
 	13550 6200 13750 6200
-Wire Wire Line
-	13750 6200 13750 5800
 Wire Wire Line
 	13750 5800 14200 5800
 Connection ~ 13750 6200
@@ -2172,7 +2164,7 @@ Wire Wire Line
 	4200 4450 4350 4450
 Wire Wire Line
 	4200 4550 4350 4550
-Text GLabel 2700 3650 0    50   Input ~ 0
+Text GLabel 2700 3850 0    50   Input ~ 0
 SDA
 Text GLabel 2700 3750 0    50   Input ~ 0
 SCL
@@ -2199,12 +2191,11 @@ Wire Wire Line
 Wire Wire Line
 	2700 3750 2900 3750
 Wire Wire Line
-	2700 3650 2900 3650
+	2700 3850 2900 3850
 NoConn ~ 2900 3150
 NoConn ~ 2900 3250
 NoConn ~ 2900 3450
 NoConn ~ 2900 3550
-NoConn ~ 2900 3850
 NoConn ~ 2900 4450
 NoConn ~ 2900 4550
 NoConn ~ 2900 4650
@@ -3564,15 +3555,6 @@ Connection ~ 7200 1450
 Wire Wire Line
 	6800 1650 6950 1650
 Connection ~ 6950 1650
-Wire Wire Line
-	13450 1800 13500 1800
-Wire Wire Line
-	13500 1800 13500 2050
-Wire Wire Line
-	13500 2050 13850 2050
-Connection ~ 13500 1800
-Wire Wire Line
-	13500 1800 13550 1800
 $Comp
 L Device:R R33
 U 1 1 625F5B0E
@@ -3599,15 +3581,6 @@ F 3 "~" H 13700 3450 50  0001 C CNN
 $EndComp
 Text GLabel 13450 3450 0    50   Input ~ 0
 CC2
-Wire Wire Line
-	13450 3450 13500 3450
-Wire Wire Line
-	13500 3450 13500 3700
-Wire Wire Line
-	13500 3700 13850 3700
-Connection ~ 13500 3450
-Wire Wire Line
-	13500 3450 13550 3450
 $Comp
 L Device:R R34
 U 1 1 6263CDA8
@@ -3634,15 +3607,6 @@ F 3 "~" H 13700 5100 50  0001 C CNN
 $EndComp
 Text GLabel 13450 5100 0    50   Input ~ 0
 CC3
-Wire Wire Line
-	13450 5100 13500 5100
-Wire Wire Line
-	13500 5100 13500 5350
-Wire Wire Line
-	13500 5350 13850 5350
-Connection ~ 13500 5100
-Wire Wire Line
-	13500 5100 13550 5100
 $Comp
 L Device:R R35
 U 1 1 626852E8
@@ -3669,15 +3633,6 @@ F 3 "~" H 13700 6750 50  0001 C CNN
 $EndComp
 Text GLabel 13450 6750 0    50   Input ~ 0
 CC4
-Wire Wire Line
-	13450 6750 13500 6750
-Wire Wire Line
-	13500 6750 13500 7000
-Wire Wire Line
-	13500 7000 13850 7000
-Connection ~ 13500 6750
-Wire Wire Line
-	13500 6750 13550 6750
 Text GLabel 1250 8650 0    50   Input ~ 0
 TXD
 Text GLabel 1250 8350 0    50   Input ~ 0
@@ -3727,4 +3682,85 @@ Wire Wire Line
 	13500 8700 13650 8700
 Wire Wire Line
 	13950 8700 14000 8700
+Wire Wire Line
+	13450 1800 13550 1800
+Wire Wire Line
+	13850 2050 13850 1800
+Connection ~ 13850 1800
+Wire Wire Line
+	13450 3450 13550 3450
+Wire Wire Line
+	13850 3700 13850 3450
+Connection ~ 13850 3450
+Wire Wire Line
+	13450 5100 13550 5100
+Wire Wire Line
+	13850 5350 13850 5100
+Connection ~ 13850 5100
+Wire Wire Line
+	13450 6750 13550 6750
+Wire Wire Line
+	13850 7000 13850 6750
+Connection ~ 13850 6750
+NoConn ~ 2900 3650
+Wire Wire Line
+	13750 1250 13750 1200
+Wire Wire Line
+	13750 2900 13750 2850
+Wire Wire Line
+	13750 4550 13750 4500
+Wire Wire Line
+	13750 6200 13750 6150
+$Comp
+L Device:R R?
+U 1 1 6118A9A4
+P 13750 6000
+F 0 "R?" H 13680 5954 50  0000 R CNN
+F 1 "1k" H 13680 6045 50  0000 R CNN
+F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder" V 13680 6000 50  0001 C CNN
+F 3 "~" H 13750 6000 50  0001 C CNN
+	1    13750 6000
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	13750 5850 13750 5800
+$Comp
+L Device:R R?
+U 1 1 6118C0C8
+P 13750 4350
+F 0 "R?" H 13680 4304 50  0000 R CNN
+F 1 "1k" H 13680 4395 50  0000 R CNN
+F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder" V 13680 4350 50  0001 C CNN
+F 3 "~" H 13750 4350 50  0001 C CNN
+	1    13750 4350
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	13750 4200 13750 4150
+$Comp
+L Device:R R?
+U 1 1 6118CCFA
+P 13750 2700
+F 0 "R?" H 13680 2654 50  0000 R CNN
+F 1 "1k" H 13680 2745 50  0000 R CNN
+F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder" V 13680 2700 50  0001 C CNN
+F 3 "~" H 13750 2700 50  0001 C CNN
+	1    13750 2700
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	13750 2550 13750 2500
+$Comp
+L Device:R R?
+U 1 1 6118D6EA
+P 13750 1050
+F 0 "R?" H 13680 1004 50  0000 R CNN
+F 1 "1k" H 13680 1095 50  0000 R CNN
+F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder" V 13680 1050 50  0001 C CNN
+F 3 "~" H 13750 1050 50  0001 C CNN
+	1    13750 1050
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	13750 900  13750 850 
 $EndSCHEMATC
