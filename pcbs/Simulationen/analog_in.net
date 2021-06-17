@@ -1,0 +1,18 @@
+* G:\Repositories\microsps\pcbs\Simulationen\analog_in.asc
+XU1 N003 N004 N005 0 N004 LT1013
+XU2 N002 N001 N005 0 N001 LT1013
+R1 N003 0 11k
+R2 N001 N003 16k
+V1 N005 0 24
+V2 N002 0 1
+I1 0 NC_01 0
+R3 N002 P001 300
+R4 P001 NC_02 200
+C1 N002 0 10n
+C2 N001 0 10p
+C3 N003 0 10n
+C4 N004 0 10p
+.dc V2 0 11
+.lib LTC.lib
+.backanno
+.end

@@ -944,13 +944,13 @@ F 3 "" H 7550 1950 50  0001 C CNN
 	1    7550 1950
 	1    0    0    -1  
 $EndComp
-Text GLabel 4200 3550 2    50   Input ~ 0
-CH1
-Text GLabel 4200 3650 2    50   Input ~ 0
-CH2
-Text GLabel 4200 3750 2    50   Input ~ 0
-CH3
 Text GLabel 4200 3850 2    50   Input ~ 0
+CH1
+Text GLabel 4200 3750 2    50   Input ~ 0
+CH2
+Text GLabel 4200 3650 2    50   Input ~ 0
+CH3
+Text GLabel 4200 3550 2    50   Input ~ 0
 CH4
 Text GLabel 6950 1750 0    50   Input ~ 0
 CH1
@@ -980,7 +980,7 @@ Wire Notes Line
 	7900 3250 11200 3250
 Wire Notes Line
 	7900 2050 11200 2050
-Text Notes 7850 6400 1    50   ~ 0
+Text Notes 8100 6400 1    50   ~ 0
 Galvanische Trennung\nmind. 1,5mm
 $Comp
 L Transistor_BJT:BC846 Q1

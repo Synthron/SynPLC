@@ -25,7 +25,7 @@ F 3 "https://www.onsemi.com/pub/Collateral/MOC3043M-D.pdf" H 7900 1450 50  0001 
 	1    0    0    -1  
 $EndComp
 $Comp
-L KiCAD_personalized:TBL009-500-02GY-2GY J7
+L XT_V1-rescue:TBL009-500-02GY-2GY-KiCAD_personalized J7
 U 1 1 60CB663B
 P 10600 1050
 F 0 "J7" V 10954 1178 50  0000 L CNN
@@ -567,7 +567,7 @@ F 3 "https://www.onsemi.com/pub/Collateral/MOC3043M-D.pdf" H 7900 2650 50  0001 
 	1    0    0    -1  
 $EndComp
 $Comp
-L KiCAD_personalized:TBL009-500-02GY-2GY J8
+L XT_V1-rescue:TBL009-500-02GY-2GY-KiCAD_personalized J8
 U 1 1 60D3A938
 P 10600 2250
 F 0 "J8" V 10954 2378 50  0000 L CNN
@@ -693,7 +693,7 @@ F 3 "https://www.onsemi.com/pub/Collateral/MOC3043M-D.pdf" H 7900 3850 50  0001 
 	1    0    0    -1  
 $EndComp
 $Comp
-L KiCAD_personalized:TBL009-500-02GY-2GY J9
+L XT_V1-rescue:TBL009-500-02GY-2GY-KiCAD_personalized J9
 U 1 1 60D41E13
 P 10600 3450
 F 0 "J9" V 10954 3578 50  0000 L CNN
@@ -819,7 +819,7 @@ F 3 "https://www.onsemi.com/pub/Collateral/MOC3043M-D.pdf" H 7900 5000 50  0001 
 	1    0    0    -1  
 $EndComp
 $Comp
-L KiCAD_personalized:TBL009-500-02GY-2GY J10
+L XT_V1-rescue:TBL009-500-02GY-2GY-KiCAD_personalized J10
 U 1 1 60D4DB35
 P 10600 4600
 F 0 "J10" V 10954 4728 50  0000 L CNN
