@@ -1,0 +1,978 @@
+EESchema Schematic File Version 4
+EELAYER 30 0
+EELAYER END
+$Descr A3 16535 11693
+encoding utf-8
+Sheet 1 1
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L KiCAD_personalized:TBL009-500-02GY-2GY J?
+U 1 1 617F4D0B
+P 15750 850
+F 0 "J?" V 16104 978 50  0000 L CNN
+F 1 "TBL009-500-02GY-2GY" H 15650 1100 50  0000 L CNN
+F 2 "TBL00950002GY2GY" H 16400 950 50  0001 L CNN
+F 3 "https://www.cuidevices.com/product/resource/tbl009-500.pdf" H 16400 850 50  0001 L CNN
+F 4 "Conn Terminal Block 2 POS 5mm Solder RA Thru-Hole 10A/Contact" H 16400 750 50  0001 L CNN "Description"
+F 5 "13" H 16400 650 50  0001 L CNN "Height"
+F 6 "CUI Inc." H 16400 550 50  0001 L CNN "Manufacturer_Name"
+F 7 "TBL009-500-02GY-2GY" H 16400 450 50  0001 L CNN "Manufacturer_Part_Number"
+F 8 "490-TBL00950002GY2GY" H 16400 350 50  0001 L CNN "Mouser Part Number"
+F 9 "https://www.mouser.co.uk/ProductDetail/CUI-Devices/TBL009-500-02GY-2GY?qs=UXgszm6BlbHpkCnXmCRUvg%3D%3D" H 16400 250 50  0001 L CNN "Mouser Price/Stock"
+F 10 "TBL009-500-02GY-2GY" H 16400 150 50  0001 L CNN "Arrow Part Number"
+F 11 "https://www.arrow.com/en/products/tbl009-500-02gy-2gy/cui-devices?region=nac" H 16400 50  50  0001 L CNN "Arrow Price/Stock"
+	1    15750 850 
+	0    1    1    0   
+$EndComp
+$Comp
+L Diode:SM6T36A D?
+U 1 1 617F83BE
+P 15350 1000
+F 0 "D?" V 15304 1080 50  0000 L CNN
+F 1 "SM6T36A" H 15200 900 50  0000 L CNN
+F 2 "Diode_SMD:D_SMB" H 15350 800 50  0001 C CNN
+F 3 "https://www.st.com/resource/en/datasheet/sm6t.pdf" H 15300 1000 50  0001 C CNN
+	1    15350 1000
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:Ferrite_Bead FB?
+U 1 1 617FA514
+P 14950 850
+F 0 "FB?" V 14676 850 50  0000 C CNN
+F 1 "Ferrite_Bead" V 14767 850 50  0000 C CNN
+F 2 "" V 14880 850 50  0001 C CNN
+F 3 "~" H 14950 850 50  0001 C CNN
+	1    14950 850 
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:R R?
+U 1 1 617FC52D
+P 14500 850
+F 0 "R?" V 14293 850 50  0000 C CNN
+F 1 "1k" V 14384 850 50  0000 C CNN
+F 2 "" V 14430 850 50  0001 C CNN
+F 3 "~" H 14500 850 50  0001 C CNN
+	1    14500 850 
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:C C?
+U 1 1 617FCC9D
+P 14250 1100
+F 0 "C?" H 14135 1054 50  0000 R CNN
+F 1 "470n" H 14135 1145 50  0000 R CNN
+F 2 "" H 14288 950 50  0001 C CNN
+F 3 "~" H 14250 1100 50  0001 C CNN
+	1    14250 1100
+	-1   0    0    1   
+$EndComp
+$Comp
+L Diode:LL4148 D?
+U 1 1 617FD7AB
+P 14000 850
+F 0 "D?" H 14000 1067 50  0000 C CNN
+F 1 "LL4148" H 14000 976 50  0000 C CNN
+F 2 "Diode_SMD:D_MiniMELF" H 14000 675 50  0001 C CNN
+F 3 "http://www.vishay.com/docs/85557/ll4148.pdf" H 14000 850 50  0001 C CNN
+	1    14000 850 
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:D_Zener D?
+U 1 1 617FE38A
+P 13600 850
+F 0 "D?" H 13600 633 50  0000 C CNN
+F 1 "6v8" H 13600 724 50  0000 C CNN
+F 2 "" H 13600 850 50  0001 C CNN
+F 3 "~" H 13600 850 50  0001 C CNN
+	1    13600 850 
+	-1   0    0    1   
+$EndComp
+$Comp
+L Device:R R?
+U 1 1 617FF369
+P 13200 850
+F 0 "R?" V 12993 850 50  0000 C CNN
+F 1 "2k2" V 13084 850 50  0000 C CNN
+F 2 "" V 13130 850 50  0001 C CNN
+F 3 "~" H 13200 850 50  0001 C CNN
+	1    13200 850 
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:D_Zener D?
+U 1 1 617FFABE
+P 13050 1150
+F 0 "D?" H 13050 933 50  0000 C CNN
+F 1 "5v6" H 13050 1024 50  0000 C CNN
+F 2 "" H 13050 1150 50  0001 C CNN
+F 3 "~" H 13050 1150 50  0001 C CNN
+	1    13050 1150
+	-1   0    0    1   
+$EndComp
+$Comp
+L Transistor_BJT:BCX53 Q?
+U 1 1 618004F1
+P 12750 950
+F 0 "Q?" V 13078 950 50  0000 C CNN
+F 1 "BCX53" V 12987 950 50  0000 C CNN
+F 2 "Package_TO_SOT_SMD:SOT-89-3" H 12950 875 50  0001 L CIN
+F 3 "http://www.infineon.com/dgdl/bcx51_bcx52_bcx53.pdf" H 12750 950 50  0001 L CNN
+	1    12750 950 
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Device:R R?
+U 1 1 61800EB1
+P 12400 1000
+F 0 "R?" H 12330 954 50  0000 R CNN
+F 1 "47k" H 12330 1045 50  0000 R CNN
+F 2 "" V 12330 1000 50  0001 C CNN
+F 3 "~" H 12400 1000 50  0001 C CNN
+	1    12400 1000
+	-1   0    0    1   
+$EndComp
+$Comp
+L Device:R R?
+U 1 1 61801568
+P 12100 1000
+F 0 "R?" H 12030 954 50  0000 R CNN
+F 1 "10k" H 12030 1045 50  0000 R CNN
+F 2 "" V 12030 1000 50  0001 C CNN
+F 3 "~" H 12100 1000 50  0001 C CNN
+	1    12100 1000
+	-1   0    0    1   
+$EndComp
+$Comp
+L Device:C C?
+U 1 1 61801FA6
+P 11800 1000
+F 0 "C?" H 11685 954 50  0000 R CNN
+F 1 "1n" H 11685 1045 50  0000 R CNN
+F 2 "" H 11838 850 50  0001 C CNN
+F 3 "~" H 11800 1000 50  0001 C CNN
+	1    11800 1000
+	-1   0    0    1   
+$EndComp
+$Comp
+L Isolator:TLP291-4 U?
+U 1 1 61803B05
+P 11200 950
+F 0 "U?" H 11200 1275 50  0000 C CNN
+F 1 "TLP291-4" H 11200 1184 50  0000 C CNN
+F 2 "Package_SO:SOIC-16_4.55x10.3mm_P1.27mm" H 11000 750 50  0001 L CIN
+F 3 "https://toshiba.semicon-storage.com/info/docget.jsp?did=12858&prodName=TLP291-4" H 11200 950 50  0001 L CNN
+	1    11200 950 
+	-1   0    0    -1  
+$EndComp
+Wire Wire Line
+	15750 850  15650 850 
+Connection ~ 15650 850 
+Wire Wire Line
+	15650 850  15350 850 
+Wire Wire Line
+	15100 850  15350 850 
+Connection ~ 15350 850 
+Wire Wire Line
+	14800 850  14650 850 
+Wire Wire Line
+	14350 850  14250 850 
+Wire Wire Line
+	14250 950  14250 850 
+Connection ~ 14250 850 
+Wire Wire Line
+	14250 850  14150 850 
+Wire Wire Line
+	13750 850  13850 850 
+Wire Wire Line
+	13450 850  13400 850 
+Wire Wire Line
+	13200 1150 13400 1150
+Wire Wire Line
+	13400 1150 13400 850 
+Connection ~ 13400 850 
+Wire Wire Line
+	13400 850  13350 850 
+Wire Wire Line
+	12900 1150 12750 1150
+Wire Wire Line
+	13050 850  12950 850 
+Wire Wire Line
+	12750 1150 12400 1150
+Connection ~ 12750 1150
+Wire Wire Line
+	12400 850  12550 850 
+Wire Wire Line
+	12400 850  12100 850 
+Connection ~ 12400 850 
+Connection ~ 11800 850 
+Wire Wire Line
+	11800 850  11500 850 
+Connection ~ 12100 850 
+Wire Wire Line
+	12100 850  11800 850 
+Wire Wire Line
+	11500 1050 11550 1050
+Wire Wire Line
+	11550 1050 11550 1150
+Wire Wire Line
+	11550 1150 11800 1150
+Connection ~ 11800 1150
+Wire Wire Line
+	11800 1150 12100 1150
+$Comp
+L power:GND1 #PWR?
+U 1 1 6180C163
+P 15350 1150
+F 0 "#PWR?" H 15350 900 50  0001 C CNN
+F 1 "GND1" H 15355 977 50  0000 C CNN
+F 2 "" H 15350 1150 50  0001 C CNN
+F 3 "" H 15350 1150 50  0001 C CNN
+	1    15350 1150
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND1 #PWR?
+U 1 1 6180C760
+P 14250 1250
+F 0 "#PWR?" H 14250 1000 50  0001 C CNN
+F 1 "GND1" H 14255 1077 50  0000 C CNN
+F 2 "" H 14250 1250 50  0001 C CNN
+F 3 "" H 14250 1250 50  0001 C CNN
+	1    14250 1250
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND1 #PWR?
+U 1 1 6180CC58
+P 11800 1150
+F 0 "#PWR?" H 11800 900 50  0001 C CNN
+F 1 "GND1" H 11805 977 50  0000 C CNN
+F 2 "" H 11800 1150 50  0001 C CNN
+F 3 "" H 11800 1150 50  0001 C CNN
+	1    11800 1150
+	1    0    0    -1  
+$EndComp
+$Comp
+L Diode:SM6T36A D?
+U 1 1 6181C3D7
+P 15350 1800
+F 0 "D?" V 15304 1880 50  0000 L CNN
+F 1 "SM6T36A" H 15200 1700 50  0000 L CNN
+F 2 "Diode_SMD:D_SMB" H 15350 1600 50  0001 C CNN
+F 3 "https://www.st.com/resource/en/datasheet/sm6t.pdf" H 15300 1800 50  0001 C CNN
+	1    15350 1800
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:Ferrite_Bead FB?
+U 1 1 6181C3DD
+P 14950 1650
+F 0 "FB?" V 14676 1650 50  0000 C CNN
+F 1 "Ferrite_Bead" V 14767 1650 50  0000 C CNN
+F 2 "" V 14880 1650 50  0001 C CNN
+F 3 "~" H 14950 1650 50  0001 C CNN
+	1    14950 1650
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:R R?
+U 1 1 6181C3E3
+P 14500 1650
+F 0 "R?" V 14293 1650 50  0000 C CNN
+F 1 "1k" V 14384 1650 50  0000 C CNN
+F 2 "" V 14430 1650 50  0001 C CNN
+F 3 "~" H 14500 1650 50  0001 C CNN
+	1    14500 1650
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:C C?
+U 1 1 6181C3E9
+P 14250 1900
+F 0 "C?" H 14135 1854 50  0000 R CNN
+F 1 "470n" H 14135 1945 50  0000 R CNN
+F 2 "" H 14288 1750 50  0001 C CNN
+F 3 "~" H 14250 1900 50  0001 C CNN
+	1    14250 1900
+	-1   0    0    1   
+$EndComp
+$Comp
+L Diode:LL4148 D?
+U 1 1 6181C3EF
+P 14000 1650
+F 0 "D?" H 14000 1867 50  0000 C CNN
+F 1 "LL4148" H 14000 1776 50  0000 C CNN
+F 2 "Diode_SMD:D_MiniMELF" H 14000 1475 50  0001 C CNN
+F 3 "http://www.vishay.com/docs/85557/ll4148.pdf" H 14000 1650 50  0001 C CNN
+	1    14000 1650
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:D_Zener D?
+U 1 1 6181C3F5
+P 13600 1650
+F 0 "D?" H 13600 1433 50  0000 C CNN
+F 1 "6v8" H 13600 1524 50  0000 C CNN
+F 2 "" H 13600 1650 50  0001 C CNN
+F 3 "~" H 13600 1650 50  0001 C CNN
+	1    13600 1650
+	-1   0    0    1   
+$EndComp
+$Comp
+L Device:R R?
+U 1 1 6181C3FB
+P 13200 1650
+F 0 "R?" V 12993 1650 50  0000 C CNN
+F 1 "2k2" V 13084 1650 50  0000 C CNN
+F 2 "" V 13130 1650 50  0001 C CNN
+F 3 "~" H 13200 1650 50  0001 C CNN
+	1    13200 1650
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:D_Zener D?
+U 1 1 6181C401
+P 13050 1950
+F 0 "D?" H 13050 1733 50  0000 C CNN
+F 1 "5v6" H 13050 1824 50  0000 C CNN
+F 2 "" H 13050 1950 50  0001 C CNN
+F 3 "~" H 13050 1950 50  0001 C CNN
+	1    13050 1950
+	-1   0    0    1   
+$EndComp
+$Comp
+L Transistor_BJT:BCX53 Q?
+U 1 1 6181C407
+P 12750 1750
+F 0 "Q?" V 13078 1750 50  0000 C CNN
+F 1 "BCX53" V 12987 1750 50  0000 C CNN
+F 2 "Package_TO_SOT_SMD:SOT-89-3" H 12950 1675 50  0001 L CIN
+F 3 "http://www.infineon.com/dgdl/bcx51_bcx52_bcx53.pdf" H 12750 1750 50  0001 L CNN
+	1    12750 1750
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Device:R R?
+U 1 1 6181C40D
+P 12400 1800
+F 0 "R?" H 12330 1754 50  0000 R CNN
+F 1 "47k" H 12330 1845 50  0000 R CNN
+F 2 "" V 12330 1800 50  0001 C CNN
+F 3 "~" H 12400 1800 50  0001 C CNN
+	1    12400 1800
+	-1   0    0    1   
+$EndComp
+$Comp
+L Device:R R?
+U 1 1 6181C413
+P 12100 1800
+F 0 "R?" H 12030 1754 50  0000 R CNN
+F 1 "10k" H 12030 1845 50  0000 R CNN
+F 2 "" V 12030 1800 50  0001 C CNN
+F 3 "~" H 12100 1800 50  0001 C CNN
+	1    12100 1800
+	-1   0    0    1   
+$EndComp
+$Comp
+L Device:C C?
+U 1 1 6181C419
+P 11800 1800
+F 0 "C?" H 11685 1754 50  0000 R CNN
+F 1 "1n" H 11685 1845 50  0000 R CNN
+F 2 "" H 11838 1650 50  0001 C CNN
+F 3 "~" H 11800 1800 50  0001 C CNN
+	1    11800 1800
+	-1   0    0    1   
+$EndComp
+$Comp
+L Isolator:TLP291-4 U?
+U 1 1 6181C41F
+P 11200 1750
+F 0 "U?" H 11200 2075 50  0000 C CNN
+F 1 "TLP291-4" H 11200 1984 50  0000 C CNN
+F 2 "Package_SO:SOIC-16_4.55x10.3mm_P1.27mm" H 11000 1550 50  0001 L CIN
+F 3 "https://toshiba.semicon-storage.com/info/docget.jsp?did=12858&prodName=TLP291-4" H 11200 1750 50  0001 L CNN
+	1    11200 1750
+	-1   0    0    -1  
+$EndComp
+Wire Wire Line
+	15650 1650 15350 1650
+Wire Wire Line
+	15100 1650 15350 1650
+Connection ~ 15350 1650
+Wire Wire Line
+	14800 1650 14650 1650
+Wire Wire Line
+	14350 1650 14250 1650
+Wire Wire Line
+	14250 1750 14250 1650
+Connection ~ 14250 1650
+Wire Wire Line
+	14250 1650 14150 1650
+Wire Wire Line
+	13750 1650 13850 1650
+Wire Wire Line
+	13450 1650 13400 1650
+Wire Wire Line
+	13200 1950 13400 1950
+Wire Wire Line
+	13400 1950 13400 1650
+Connection ~ 13400 1650
+Wire Wire Line
+	13400 1650 13350 1650
+Wire Wire Line
+	12900 1950 12750 1950
+Wire Wire Line
+	13050 1650 12950 1650
+Wire Wire Line
+	12750 1950 12400 1950
+Connection ~ 12750 1950
+Wire Wire Line
+	12400 1650 12550 1650
+Wire Wire Line
+	12400 1650 12100 1650
+Connection ~ 12400 1650
+Connection ~ 11800 1650
+Wire Wire Line
+	11800 1650 11500 1650
+Connection ~ 12100 1650
+Wire Wire Line
+	12100 1650 11800 1650
+Wire Wire Line
+	11500 1850 11550 1850
+Wire Wire Line
+	11550 1850 11550 1950
+Wire Wire Line
+	11550 1950 11800 1950
+Connection ~ 11800 1950
+Wire Wire Line
+	11800 1950 12100 1950
+$Comp
+L power:GND1 #PWR?
+U 1 1 6181C443
+P 15350 1950
+F 0 "#PWR?" H 15350 1700 50  0001 C CNN
+F 1 "GND1" H 15355 1777 50  0000 C CNN
+F 2 "" H 15350 1950 50  0001 C CNN
+F 3 "" H 15350 1950 50  0001 C CNN
+	1    15350 1950
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND1 #PWR?
+U 1 1 6181C449
+P 14250 2050
+F 0 "#PWR?" H 14250 1800 50  0001 C CNN
+F 1 "GND1" H 14255 1877 50  0000 C CNN
+F 2 "" H 14250 2050 50  0001 C CNN
+F 3 "" H 14250 2050 50  0001 C CNN
+	1    14250 2050
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND1 #PWR?
+U 1 1 6181C44F
+P 11800 1950
+F 0 "#PWR?" H 11800 1700 50  0001 C CNN
+F 1 "GND1" H 11805 1777 50  0000 C CNN
+F 2 "" H 11800 1950 50  0001 C CNN
+F 3 "" H 11800 1950 50  0001 C CNN
+	1    11800 1950
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	15750 1650 15650 1650
+Connection ~ 15650 1650
+$Comp
+L KiCAD_personalized:TBL009-500-02GY-2GY J?
+U 1 1 61852122
+P 15750 2400
+F 0 "J?" V 16104 2528 50  0000 L CNN
+F 1 "TBL009-500-02GY-2GY" H 15650 2650 50  0000 L CNN
+F 2 "TBL00950002GY2GY" H 16400 2500 50  0001 L CNN
+F 3 "https://www.cuidevices.com/product/resource/tbl009-500.pdf" H 16400 2400 50  0001 L CNN
+F 4 "Conn Terminal Block 2 POS 5mm Solder RA Thru-Hole 10A/Contact" H 16400 2300 50  0001 L CNN "Description"
+F 5 "13" H 16400 2200 50  0001 L CNN "Height"
+F 6 "CUI Inc." H 16400 2100 50  0001 L CNN "Manufacturer_Name"
+F 7 "TBL009-500-02GY-2GY" H 16400 2000 50  0001 L CNN "Manufacturer_Part_Number"
+F 8 "490-TBL00950002GY2GY" H 16400 1900 50  0001 L CNN "Mouser Part Number"
+F 9 "https://www.mouser.co.uk/ProductDetail/CUI-Devices/TBL009-500-02GY-2GY?qs=UXgszm6BlbHpkCnXmCRUvg%3D%3D" H 16400 1800 50  0001 L CNN "Mouser Price/Stock"
+F 10 "TBL009-500-02GY-2GY" H 16400 1700 50  0001 L CNN "Arrow Part Number"
+F 11 "https://www.arrow.com/en/products/tbl009-500-02gy-2gy/cui-devices?region=nac" H 16400 1600 50  0001 L CNN "Arrow Price/Stock"
+	1    15750 2400
+	0    1    1    0   
+$EndComp
+$Comp
+L Diode:SM6T36A D?
+U 1 1 61852128
+P 15350 2550
+F 0 "D?" V 15304 2630 50  0000 L CNN
+F 1 "SM6T36A" H 15200 2450 50  0000 L CNN
+F 2 "Diode_SMD:D_SMB" H 15350 2350 50  0001 C CNN
+F 3 "https://www.st.com/resource/en/datasheet/sm6t.pdf" H 15300 2550 50  0001 C CNN
+	1    15350 2550
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:Ferrite_Bead FB?
+U 1 1 6185212E
+P 14950 2400
+F 0 "FB?" V 14676 2400 50  0000 C CNN
+F 1 "Ferrite_Bead" V 14767 2400 50  0000 C CNN
+F 2 "" V 14880 2400 50  0001 C CNN
+F 3 "~" H 14950 2400 50  0001 C CNN
+	1    14950 2400
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:R R?
+U 1 1 61852134
+P 14500 2400
+F 0 "R?" V 14293 2400 50  0000 C CNN
+F 1 "1k" V 14384 2400 50  0000 C CNN
+F 2 "" V 14430 2400 50  0001 C CNN
+F 3 "~" H 14500 2400 50  0001 C CNN
+	1    14500 2400
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:C C?
+U 1 1 6185213A
+P 14250 2650
+F 0 "C?" H 14135 2604 50  0000 R CNN
+F 1 "470n" H 14135 2695 50  0000 R CNN
+F 2 "" H 14288 2500 50  0001 C CNN
+F 3 "~" H 14250 2650 50  0001 C CNN
+	1    14250 2650
+	-1   0    0    1   
+$EndComp
+$Comp
+L Diode:LL4148 D?
+U 1 1 61852140
+P 14000 2400
+F 0 "D?" H 14000 2617 50  0000 C CNN
+F 1 "LL4148" H 14000 2526 50  0000 C CNN
+F 2 "Diode_SMD:D_MiniMELF" H 14000 2225 50  0001 C CNN
+F 3 "http://www.vishay.com/docs/85557/ll4148.pdf" H 14000 2400 50  0001 C CNN
+	1    14000 2400
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:D_Zener D?
+U 1 1 61852146
+P 13600 2400
+F 0 "D?" H 13600 2183 50  0000 C CNN
+F 1 "6v8" H 13600 2274 50  0000 C CNN
+F 2 "" H 13600 2400 50  0001 C CNN
+F 3 "~" H 13600 2400 50  0001 C CNN
+	1    13600 2400
+	-1   0    0    1   
+$EndComp
+$Comp
+L Device:R R?
+U 1 1 6185214C
+P 13200 2400
+F 0 "R?" V 12993 2400 50  0000 C CNN
+F 1 "2k2" V 13084 2400 50  0000 C CNN
+F 2 "" V 13130 2400 50  0001 C CNN
+F 3 "~" H 13200 2400 50  0001 C CNN
+	1    13200 2400
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:D_Zener D?
+U 1 1 61852152
+P 13050 2700
+F 0 "D?" H 13050 2483 50  0000 C CNN
+F 1 "5v6" H 13050 2574 50  0000 C CNN
+F 2 "" H 13050 2700 50  0001 C CNN
+F 3 "~" H 13050 2700 50  0001 C CNN
+	1    13050 2700
+	-1   0    0    1   
+$EndComp
+$Comp
+L Transistor_BJT:BCX53 Q?
+U 1 1 61852158
+P 12750 2500
+F 0 "Q?" V 13078 2500 50  0000 C CNN
+F 1 "BCX53" V 12987 2500 50  0000 C CNN
+F 2 "Package_TO_SOT_SMD:SOT-89-3" H 12950 2425 50  0001 L CIN
+F 3 "http://www.infineon.com/dgdl/bcx51_bcx52_bcx53.pdf" H 12750 2500 50  0001 L CNN
+	1    12750 2500
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Device:R R?
+U 1 1 6185215E
+P 12400 2550
+F 0 "R?" H 12330 2504 50  0000 R CNN
+F 1 "47k" H 12330 2595 50  0000 R CNN
+F 2 "" V 12330 2550 50  0001 C CNN
+F 3 "~" H 12400 2550 50  0001 C CNN
+	1    12400 2550
+	-1   0    0    1   
+$EndComp
+$Comp
+L Device:R R?
+U 1 1 61852164
+P 12100 2550
+F 0 "R?" H 12030 2504 50  0000 R CNN
+F 1 "10k" H 12030 2595 50  0000 R CNN
+F 2 "" V 12030 2550 50  0001 C CNN
+F 3 "~" H 12100 2550 50  0001 C CNN
+	1    12100 2550
+	-1   0    0    1   
+$EndComp
+$Comp
+L Device:C C?
+U 1 1 6185216A
+P 11800 2550
+F 0 "C?" H 11685 2504 50  0000 R CNN
+F 1 "1n" H 11685 2595 50  0000 R CNN
+F 2 "" H 11838 2400 50  0001 C CNN
+F 3 "~" H 11800 2550 50  0001 C CNN
+	1    11800 2550
+	-1   0    0    1   
+$EndComp
+$Comp
+L Isolator:TLP291-4 U?
+U 1 1 61852170
+P 11200 2500
+F 0 "U?" H 11200 2825 50  0000 C CNN
+F 1 "TLP291-4" H 11200 2734 50  0000 C CNN
+F 2 "Package_SO:SOIC-16_4.55x10.3mm_P1.27mm" H 11000 2300 50  0001 L CIN
+F 3 "https://toshiba.semicon-storage.com/info/docget.jsp?did=12858&prodName=TLP291-4" H 11200 2500 50  0001 L CNN
+	1    11200 2500
+	-1   0    0    -1  
+$EndComp
+Wire Wire Line
+	15750 2400 15650 2400
+Connection ~ 15650 2400
+Wire Wire Line
+	15650 2400 15350 2400
+Wire Wire Line
+	15100 2400 15350 2400
+Connection ~ 15350 2400
+Wire Wire Line
+	14800 2400 14650 2400
+Wire Wire Line
+	14350 2400 14250 2400
+Wire Wire Line
+	14250 2500 14250 2400
+Connection ~ 14250 2400
+Wire Wire Line
+	14250 2400 14150 2400
+Wire Wire Line
+	13750 2400 13850 2400
+Wire Wire Line
+	13450 2400 13400 2400
+Wire Wire Line
+	13200 2700 13400 2700
+Wire Wire Line
+	13400 2700 13400 2400
+Connection ~ 13400 2400
+Wire Wire Line
+	13400 2400 13350 2400
+Wire Wire Line
+	12900 2700 12750 2700
+Wire Wire Line
+	13050 2400 12950 2400
+Wire Wire Line
+	12750 2700 12400 2700
+Connection ~ 12750 2700
+Wire Wire Line
+	12400 2400 12550 2400
+Wire Wire Line
+	12400 2400 12100 2400
+Connection ~ 12400 2400
+Connection ~ 11800 2400
+Wire Wire Line
+	11800 2400 11500 2400
+Connection ~ 12100 2400
+Wire Wire Line
+	12100 2400 11800 2400
+Wire Wire Line
+	11500 2600 11550 2600
+Wire Wire Line
+	11550 2600 11550 2700
+Wire Wire Line
+	11550 2700 11800 2700
+Connection ~ 11800 2700
+Wire Wire Line
+	11800 2700 12100 2700
+$Comp
+L power:GND1 #PWR?
+U 1 1 61852196
+P 15350 2700
+F 0 "#PWR?" H 15350 2450 50  0001 C CNN
+F 1 "GND1" H 15355 2527 50  0000 C CNN
+F 2 "" H 15350 2700 50  0001 C CNN
+F 3 "" H 15350 2700 50  0001 C CNN
+	1    15350 2700
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND1 #PWR?
+U 1 1 6185219C
+P 14250 2800
+F 0 "#PWR?" H 14250 2550 50  0001 C CNN
+F 1 "GND1" H 14255 2627 50  0000 C CNN
+F 2 "" H 14250 2800 50  0001 C CNN
+F 3 "" H 14250 2800 50  0001 C CNN
+	1    14250 2800
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND1 #PWR?
+U 1 1 618521A2
+P 11800 2700
+F 0 "#PWR?" H 11800 2450 50  0001 C CNN
+F 1 "GND1" H 11805 2527 50  0000 C CNN
+F 2 "" H 11800 2700 50  0001 C CNN
+F 3 "" H 11800 2700 50  0001 C CNN
+	1    11800 2700
+	1    0    0    -1  
+$EndComp
+$Comp
+L Diode:SM6T36A D?
+U 1 1 618521A8
+P 15350 3350
+F 0 "D?" V 15304 3430 50  0000 L CNN
+F 1 "SM6T36A" H 15200 3250 50  0000 L CNN
+F 2 "Diode_SMD:D_SMB" H 15350 3150 50  0001 C CNN
+F 3 "https://www.st.com/resource/en/datasheet/sm6t.pdf" H 15300 3350 50  0001 C CNN
+	1    15350 3350
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:Ferrite_Bead FB?
+U 1 1 618521AE
+P 14950 3200
+F 0 "FB?" V 14676 3200 50  0000 C CNN
+F 1 "Ferrite_Bead" V 14767 3200 50  0000 C CNN
+F 2 "" V 14880 3200 50  0001 C CNN
+F 3 "~" H 14950 3200 50  0001 C CNN
+	1    14950 3200
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:R R?
+U 1 1 618521B4
+P 14500 3200
+F 0 "R?" V 14293 3200 50  0000 C CNN
+F 1 "1k" V 14384 3200 50  0000 C CNN
+F 2 "" V 14430 3200 50  0001 C CNN
+F 3 "~" H 14500 3200 50  0001 C CNN
+	1    14500 3200
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:C C?
+U 1 1 618521BA
+P 14250 3450
+F 0 "C?" H 14135 3404 50  0000 R CNN
+F 1 "470n" H 14135 3495 50  0000 R CNN
+F 2 "" H 14288 3300 50  0001 C CNN
+F 3 "~" H 14250 3450 50  0001 C CNN
+	1    14250 3450
+	-1   0    0    1   
+$EndComp
+$Comp
+L Diode:LL4148 D?
+U 1 1 618521C0
+P 14000 3200
+F 0 "D?" H 14000 3417 50  0000 C CNN
+F 1 "LL4148" H 14000 3326 50  0000 C CNN
+F 2 "Diode_SMD:D_MiniMELF" H 14000 3025 50  0001 C CNN
+F 3 "http://www.vishay.com/docs/85557/ll4148.pdf" H 14000 3200 50  0001 C CNN
+	1    14000 3200
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:D_Zener D?
+U 1 1 618521C6
+P 13600 3200
+F 0 "D?" H 13600 2983 50  0000 C CNN
+F 1 "6v8" H 13600 3074 50  0000 C CNN
+F 2 "" H 13600 3200 50  0001 C CNN
+F 3 "~" H 13600 3200 50  0001 C CNN
+	1    13600 3200
+	-1   0    0    1   
+$EndComp
+$Comp
+L Device:R R?
+U 1 1 618521CC
+P 13200 3200
+F 0 "R?" V 12993 3200 50  0000 C CNN
+F 1 "2k2" V 13084 3200 50  0000 C CNN
+F 2 "" V 13130 3200 50  0001 C CNN
+F 3 "~" H 13200 3200 50  0001 C CNN
+	1    13200 3200
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:D_Zener D?
+U 1 1 618521D2
+P 13050 3500
+F 0 "D?" H 13050 3283 50  0000 C CNN
+F 1 "5v6" H 13050 3374 50  0000 C CNN
+F 2 "" H 13050 3500 50  0001 C CNN
+F 3 "~" H 13050 3500 50  0001 C CNN
+	1    13050 3500
+	-1   0    0    1   
+$EndComp
+$Comp
+L Transistor_BJT:BCX53 Q?
+U 1 1 618521D8
+P 12750 3300
+F 0 "Q?" V 13078 3300 50  0000 C CNN
+F 1 "BCX53" V 12987 3300 50  0000 C CNN
+F 2 "Package_TO_SOT_SMD:SOT-89-3" H 12950 3225 50  0001 L CIN
+F 3 "http://www.infineon.com/dgdl/bcx51_bcx52_bcx53.pdf" H 12750 3300 50  0001 L CNN
+	1    12750 3300
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Device:R R?
+U 1 1 618521DE
+P 12400 3350
+F 0 "R?" H 12330 3304 50  0000 R CNN
+F 1 "47k" H 12330 3395 50  0000 R CNN
+F 2 "" V 12330 3350 50  0001 C CNN
+F 3 "~" H 12400 3350 50  0001 C CNN
+	1    12400 3350
+	-1   0    0    1   
+$EndComp
+$Comp
+L Device:R R?
+U 1 1 618521E4
+P 12100 3350
+F 0 "R?" H 12030 3304 50  0000 R CNN
+F 1 "10k" H 12030 3395 50  0000 R CNN
+F 2 "" V 12030 3350 50  0001 C CNN
+F 3 "~" H 12100 3350 50  0001 C CNN
+	1    12100 3350
+	-1   0    0    1   
+$EndComp
+$Comp
+L Device:C C?
+U 1 1 618521EA
+P 11800 3350
+F 0 "C?" H 11685 3304 50  0000 R CNN
+F 1 "1n" H 11685 3395 50  0000 R CNN
+F 2 "" H 11838 3200 50  0001 C CNN
+F 3 "~" H 11800 3350 50  0001 C CNN
+	1    11800 3350
+	-1   0    0    1   
+$EndComp
+$Comp
+L Isolator:TLP291-4 U?
+U 1 1 618521F0
+P 11200 3300
+F 0 "U?" H 11200 3625 50  0000 C CNN
+F 1 "TLP291-4" H 11200 3534 50  0000 C CNN
+F 2 "Package_SO:SOIC-16_4.55x10.3mm_P1.27mm" H 11000 3100 50  0001 L CIN
+F 3 "https://toshiba.semicon-storage.com/info/docget.jsp?did=12858&prodName=TLP291-4" H 11200 3300 50  0001 L CNN
+	1    11200 3300
+	-1   0    0    -1  
+$EndComp
+Wire Wire Line
+	15650 3200 15350 3200
+Wire Wire Line
+	15100 3200 15350 3200
+Connection ~ 15350 3200
+Wire Wire Line
+	14800 3200 14650 3200
+Wire Wire Line
+	14350 3200 14250 3200
+Wire Wire Line
+	14250 3300 14250 3200
+Connection ~ 14250 3200
+Wire Wire Line
+	14250 3200 14150 3200
+Wire Wire Line
+	13750 3200 13850 3200
+Wire Wire Line
+	13450 3200 13400 3200
+Wire Wire Line
+	13200 3500 13400 3500
+Wire Wire Line
+	13400 3500 13400 3200
+Connection ~ 13400 3200
+Wire Wire Line
+	13400 3200 13350 3200
+Wire Wire Line
+	12900 3500 12750 3500
+Wire Wire Line
+	13050 3200 12950 3200
+Wire Wire Line
+	12750 3500 12400 3500
+Connection ~ 12750 3500
+Wire Wire Line
+	12400 3200 12550 3200
+Wire Wire Line
+	12400 3200 12100 3200
+Connection ~ 12400 3200
+Connection ~ 11800 3200
+Wire Wire Line
+	11800 3200 11500 3200
+Connection ~ 12100 3200
+Wire Wire Line
+	12100 3200 11800 3200
+Wire Wire Line
+	11500 3400 11550 3400
+Wire Wire Line
+	11550 3400 11550 3500
+Wire Wire Line
+	11550 3500 11800 3500
+Connection ~ 11800 3500
+Wire Wire Line
+	11800 3500 12100 3500
+$Comp
+L power:GND1 #PWR?
+U 1 1 61852214
+P 15350 3500
+F 0 "#PWR?" H 15350 3250 50  0001 C CNN
+F 1 "GND1" H 15355 3327 50  0000 C CNN
+F 2 "" H 15350 3500 50  0001 C CNN
+F 3 "" H 15350 3500 50  0001 C CNN
+	1    15350 3500
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND1 #PWR?
+U 1 1 6185221A
+P 14250 3600
+F 0 "#PWR?" H 14250 3350 50  0001 C CNN
+F 1 "GND1" H 14255 3427 50  0000 C CNN
+F 2 "" H 14250 3600 50  0001 C CNN
+F 3 "" H 14250 3600 50  0001 C CNN
+	1    14250 3600
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND1 #PWR?
+U 1 1 61852220
+P 11800 3500
+F 0 "#PWR?" H 11800 3250 50  0001 C CNN
+F 1 "GND1" H 11805 3327 50  0000 C CNN
+F 2 "" H 11800 3500 50  0001 C CNN
+F 3 "" H 11800 3500 50  0001 C CNN
+	1    11800 3500
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	15750 3200 15650 3200
+Connection ~ 15650 3200
+$EndSCHEMATC
