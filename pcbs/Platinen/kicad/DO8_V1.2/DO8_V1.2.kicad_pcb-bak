@@ -3,7 +3,7 @@
   (general
     (thickness 1.6)
     (drawings 9)
-    (tracks 567)
+    (tracks 565)
     (zones 0)
     (modules 115)
     (nets 114)
@@ -6046,8 +6046,6 @@
   (segment (start 123.213 115) (end 123.213 112.519) (width 0.4) (layer F.Cu) (net 97))
   (segment (start 125.753 112.519) (end 125.626 112.392) (width 0.4) (layer F.Cu) (net 99))
   (segment (start 125.753 115) (end 125.753 112.519) (width 0.4) (layer F.Cu) (net 99))
-  (segment (start 117.787 131.331) (end 117.787 130.915) (width 0.25) (layer F.Cu) (net 105))
-  (segment (start 117.787 130.915) (end 117.787 130.061) (width 0.25) (layer F.Cu) (net 105))
 
   (zone (net 7) (net_name GND2) (layer F.Cu) (tstamp 0) (hatch edge 0.508)
     (connect_pads (clearance 0.254))
