@@ -167,12 +167,12 @@ $EndComp
 $Comp
 L Isolator:TLP291-4 U5
 U 1 1 61803B05
-P 11200 950
-F 0 "U5" H 11200 1275 50  0000 C CNN
-F 1 "TLP291-4" H 11200 1184 50  0000 C CNN
-F 2 "Package_SO:SOIC-16_4.55x10.3mm_P1.27mm" H 11000 750 50  0001 L CIN
-F 3 "https://toshiba.semicon-storage.com/info/docget.jsp?did=12858&prodName=TLP291-4" H 11200 950 50  0001 L CNN
-	1    11200 950 
+P 11200 3300
+F 0 "U5" H 11200 3625 50  0000 C CNN
+F 1 "TLP291-4" H 11200 3534 50  0000 C CNN
+F 2 "Package_SO:SOIC-16_4.55x10.3mm_P1.27mm" H 11000 3100 50  0001 L CIN
+F 3 "https://toshiba.semicon-storage.com/info/docget.jsp?did=12858&prodName=TLP291-4" H 11200 3300 50  0001 L CNN
+	1    11200 3300
 	-1   0    0    -1  
 $EndComp
 Wire Wire Line
@@ -1096,12 +1096,12 @@ $EndComp
 $Comp
 L Isolator:TLP291-4 U6
 U 1 1 6188CEFA
-P 11200 4700
-F 0 "U6" H 11200 5025 50  0000 C CNN
-F 1 "TLP291-4" H 11200 4934 50  0000 C CNN
-F 2 "Package_SO:SOIC-16_4.55x10.3mm_P1.27mm" H 11000 4500 50  0001 L CIN
-F 3 "https://toshiba.semicon-storage.com/info/docget.jsp?did=12858&prodName=TLP291-4" H 11200 4700 50  0001 L CNN
-	1    11200 4700
+P 11200 7050
+F 0 "U6" H 11200 7375 50  0000 C CNN
+F 1 "TLP291-4" H 11200 7284 50  0000 C CNN
+F 2 "Package_SO:SOIC-16_4.55x10.3mm_P1.27mm" H 11000 6850 50  0001 L CIN
+F 3 "https://toshiba.semicon-storage.com/info/docget.jsp?did=12858&prodName=TLP291-4" H 11200 7050 50  0001 L CNN
+	1    11200 7050
 	-1   0    0    -1  
 $EndComp
 Wire Wire Line
@@ -1929,67 +1929,67 @@ Wire Notes Line
 $Comp
 L Isolator:TLP291-4 U5
 U 2 1 619683F3
-P 11200 1750
-F 0 "U5" H 11200 2075 50  0000 C CNN
-F 1 "TLP291-4" H 11200 1984 50  0000 C CNN
-F 2 "Package_SO:SOIC-16_4.55x10.3mm_P1.27mm" H 11000 1550 50  0001 L CIN
-F 3 "https://toshiba.semicon-storage.com/info/docget.jsp?did=12858&prodName=TLP291-4" H 11200 1750 50  0001 L CNN
-	2    11200 1750
-	-1   0    0    -1  
-$EndComp
-$Comp
-L Isolator:TLP291-4 U5
-U 3 1 6196A662
 P 11200 2500
 F 0 "U5" H 11200 2825 50  0000 C CNN
 F 1 "TLP291-4" H 11200 2734 50  0000 C CNN
 F 2 "Package_SO:SOIC-16_4.55x10.3mm_P1.27mm" H 11000 2300 50  0001 L CIN
 F 3 "https://toshiba.semicon-storage.com/info/docget.jsp?did=12858&prodName=TLP291-4" H 11200 2500 50  0001 L CNN
-	3    11200 2500
+	2    11200 2500
+	-1   0    0    -1  
+$EndComp
+$Comp
+L Isolator:TLP291-4 U5
+U 3 1 6196A662
+P 11200 1750
+F 0 "U5" H 11200 2075 50  0000 C CNN
+F 1 "TLP291-4" H 11200 1984 50  0000 C CNN
+F 2 "Package_SO:SOIC-16_4.55x10.3mm_P1.27mm" H 11000 1550 50  0001 L CIN
+F 3 "https://toshiba.semicon-storage.com/info/docget.jsp?did=12858&prodName=TLP291-4" H 11200 1750 50  0001 L CNN
+	3    11200 1750
 	-1   0    0    -1  
 $EndComp
 $Comp
 L Isolator:TLP291-4 U5
 U 4 1 6196C520
-P 11200 3300
-F 0 "U5" H 11200 3625 50  0000 C CNN
-F 1 "TLP291-4" H 11200 3534 50  0000 C CNN
-F 2 "Package_SO:SOIC-16_4.55x10.3mm_P1.27mm" H 11000 3100 50  0001 L CIN
-F 3 "https://toshiba.semicon-storage.com/info/docget.jsp?did=12858&prodName=TLP291-4" H 11200 3300 50  0001 L CNN
-	4    11200 3300
+P 11200 950
+F 0 "U5" H 11200 1275 50  0000 C CNN
+F 1 "TLP291-4" H 11200 1184 50  0000 C CNN
+F 2 "Package_SO:SOIC-16_4.55x10.3mm_P1.27mm" H 11000 750 50  0001 L CIN
+F 3 "https://toshiba.semicon-storage.com/info/docget.jsp?did=12858&prodName=TLP291-4" H 11200 950 50  0001 L CNN
+	4    11200 950 
 	-1   0    0    -1  
 $EndComp
 $Comp
 L Isolator:TLP291-4 U6
 U 2 1 6197F6BB
-P 11200 5500
-F 0 "U6" H 11200 5825 50  0000 C CNN
-F 1 "TLP291-4" H 11200 5734 50  0000 C CNN
-F 2 "Package_SO:SOIC-16_4.55x10.3mm_P1.27mm" H 11000 5300 50  0001 L CIN
-F 3 "https://toshiba.semicon-storage.com/info/docget.jsp?did=12858&prodName=TLP291-4" H 11200 5500 50  0001 L CNN
-	2    11200 5500
-	-1   0    0    -1  
-$EndComp
-$Comp
-L Isolator:TLP291-4 U6
-U 3 1 6197F6C1
 P 11200 6250
 F 0 "U6" H 11200 6575 50  0000 C CNN
 F 1 "TLP291-4" H 11200 6484 50  0000 C CNN
 F 2 "Package_SO:SOIC-16_4.55x10.3mm_P1.27mm" H 11000 6050 50  0001 L CIN
 F 3 "https://toshiba.semicon-storage.com/info/docget.jsp?did=12858&prodName=TLP291-4" H 11200 6250 50  0001 L CNN
-	3    11200 6250
+	2    11200 6250
+	-1   0    0    -1  
+$EndComp
+$Comp
+L Isolator:TLP291-4 U6
+U 3 1 6197F6C1
+P 11200 5500
+F 0 "U6" H 11200 5825 50  0000 C CNN
+F 1 "TLP291-4" H 11200 5734 50  0000 C CNN
+F 2 "Package_SO:SOIC-16_4.55x10.3mm_P1.27mm" H 11000 5300 50  0001 L CIN
+F 3 "https://toshiba.semicon-storage.com/info/docget.jsp?did=12858&prodName=TLP291-4" H 11200 5500 50  0001 L CNN
+	3    11200 5500
 	-1   0    0    -1  
 $EndComp
 $Comp
 L Isolator:TLP291-4 U6
 U 4 1 6197F6C7
-P 11200 7050
-F 0 "U6" H 11200 7375 50  0000 C CNN
-F 1 "TLP291-4" H 11200 7284 50  0000 C CNN
-F 2 "Package_SO:SOIC-16_4.55x10.3mm_P1.27mm" H 11000 6850 50  0001 L CIN
-F 3 "https://toshiba.semicon-storage.com/info/docget.jsp?did=12858&prodName=TLP291-4" H 11200 7050 50  0001 L CNN
-	4    11200 7050
+P 11200 4700
+F 0 "U6" H 11200 5025 50  0000 C CNN
+F 1 "TLP291-4" H 11200 4934 50  0000 C CNN
+F 2 "Package_SO:SOIC-16_4.55x10.3mm_P1.27mm" H 11000 4500 50  0001 L CIN
+F 3 "https://toshiba.semicon-storage.com/info/docget.jsp?did=12858&prodName=TLP291-4" H 11200 4700 50  0001 L CNN
+	4    11200 4700
 	-1   0    0    -1  
 $EndComp
 Wire Notes Line

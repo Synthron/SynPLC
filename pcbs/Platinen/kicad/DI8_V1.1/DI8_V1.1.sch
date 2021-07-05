@@ -1994,8 +1994,6 @@ F 3 "https://toshiba.semicon-storage.com/info/docget.jsp?did=12858&prodName=TLP2
 $EndComp
 Wire Notes Line
 	11200 3950 16050 3950
-Text Notes 11350 9050 1    50   ~ 0
-Galvanische Trennung\nmindestens 1,5mm
 $Comp
 L MCU_ST_STM32F1:STM32F103C8Tx U3
 U 1 1 619D9040
@@ -3664,6 +3662,6 @@ Wire Wire Line
 Connection ~ 7900 9150
 Wire Wire Line
 	7900 9150 8300 9150
-Text Notes 12750 3950 0    50   ~ 0
-Galvanische Trennung\nmindestens 1,5mm
+Text Notes 11400 9350 1    50   ~ 0
+Galvanic Isolation\nmin. 1.5mm
 $EndSCHEMATC
