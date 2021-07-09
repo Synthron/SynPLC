@@ -17,6 +17,8 @@
 \contentsline {chapter}{\numberline {4}Module V1}{6}{chapter.24}%
 \contentsline {section}{\numberline {4.1}CPU}{6}{section.25}%
 \contentsline {section}{\numberline {4.2}DO}{6}{section.26}%
-\contentsline {section}{\numberline {4.3}DI}{7}{section.28}%
-\contentsline {section}{\numberline {4.4}AO}{7}{section.29}%
+\contentsline {section}{\numberline {4.3}DI}{6}{section.27}%
+\contentsline {section}{\numberline {4.4}AO}{7}{section.28}%
+\contentsline {section}{\numberline {4.5}AI}{7}{section.29}%
+\contentsline {section}{\numberline {4.6}XT}{7}{section.30}%
 \providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 

@@ -10,36 +10,28 @@ Die CPU ist das Herz der SPS. Sie basiert auf einem STM32F1-Controller und beinh
     \item DC/DC-Converter als Stromversorgung
 \end{itemize}
 
-Die CPU selbst hat keine Adresse, die Slaves antworten immer direkt auf die Anfragen der CPU. 
-
 Der DCDC-Converter bietet einen ESD-geschützten 24V-Eingang und liefert 5V bei 10W Ausgangsleistung. Diese Spannung liegt am Busstecker an und versorgt die anderen Module.
 
 \section{DO}
-Das DO (Digital-Output) stellt 8 galvanisch getrennte 24V-Ausgänge mit einer Belastbarkeit von jeweils 0,5A zur Verfügung. Die 24V-Spannung wird extern angelegt. 
+Das DO (Digital-Output) stellt 8 24V-Ausgänge mit einer Belastbarkeit von jeweils 0,5A zur Verfügung. Die 24V-Spannung wird extern angelegt. 
 Gleichzeitig werden die Ausgänge rückgelesen, sodass der Status angezeigt werden kann.
 
-Die LEDs auf der Frontplatte zeigen dabei den Status der Ausgänge an. Durch die Farbe lässt sich der Status ablesen:
-\begin{table}[H]
-    \centering
-    \begin{tabular}{|c|c|}
-    \hline
-        Farbe   &   Bedeutung \\ \hline \hline
-        Aus     &   Ausgang low, kein Fehler \\ \hline
-        Grün    &   Ausgang high, kein Fehler \\ \hline
-        Rot     &   Ausgang low, FEHLER \\ \hline
-        Gelb    &   Ausgang high, FEHLER \\ \hline
-    \end{tabular}
-    \caption{LED-Status DO}
-\label{LED-Status DO}
-\end{table}
+Die LEDs auf der Frontplatte zeigen an, ob ein Kanal High oder Low ist. Dadurch wird ein optisches Feedback gegeben. 
 
 Das DO hat einen Schutzmechanismus gegen Überlastung der Ausgänge. Wenn der Controller bemerkt, dass ein Ausgang kurzgeschlossen ist, wird dieser deaktiviert. Nun werden alle 100ms der Ausgang wieder aktiviert und nachgeschaut, ob der Kurzschluss behoben wurde. Wenn ja, bleibt der Ausgang aktiviert, wenn nicht, wird das "Polling" fortgesetzt, bis die CPU den Ausgang deaktiviert. 
 
 Während einem aktiven Fehler ist das jeweilige Bit im Fehlerspeicher gesetzt. Beim Zugriff der CPU auf das Modul wird dieser Speicher einmal pro Zyklus ausgelesen. 
 
 \section{DI}
-Das DI bietet 8 galvanisch getrennte Eingänge mit ESD-Schutz. Ein High-Pegel wird ab einer Eingangsspannung von ca. 7V erkannt. Die Eingänge sind bis 33V spannungsfest und verbrauchen einen Maximalstrom von 2mA. 
+Das DI bietet 8 Eingänge mit ESD-Schutz und zwei galvanisch getrennten Potentialen. Ein High-Pegel wird ab einer Eingangsspannung von ca. 7,5V erkannt. Die Eingänge sind bis 33V spannungsfest und verbrauchen einen Maximalstrom von 2mA. 
 
 Auf der Frontplatte ist eine LED je Kanal, welche den Status anzeigt. 
 
 \section{AO}
+Das AO stellt vier analoge Ausgänge zur Verfügung, die jeweils entweder 0 bis 10V Konstantspannung oder 0 bis 20mA Konstantstrom liefern. Die Umschaltung erfolgt dabei über Relais. 
+
+\section{AI}
+Das AI stellt vier analoge Eingänge bereit, die jeweils entweder 0 bis 10V Konstantspannung oder 0 bis 20mA Konstantstrom messen können. Die Umschaltung erfolgt über MOSFETs. 
+
+\section{XT}
+Das XT stellt vier Triac-Ausgänge auf zwei Spannungsdomänen bereit. Jede Domäne verfügt über eine eigene Nulldurchgangserkennung. Die Kanäle können max 230V und 1A regeln. 
