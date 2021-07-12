@@ -1,4 +1,4 @@
-\section{Busses}
+\chapter{Busses}
 
 Every module has at least one common bus connector connecting via ribbon cable to the other modules. Alongside the 5V and GND voltage supply there also is the communication bus lines. On the modules there are two different busses possible: RS485 and CAN. 
 
@@ -6,15 +6,16 @@ In order to maintain a stable communication, consider the use of twisted-pair ri
 
 Both are working on a custom protocol, which is easy to implement on other controllers too. 
 
-\subsection{RS485}
+\section{RS485}
 
-\subsubsection{Baudrate and Transmission speed}
+\subsection{Baudrate and Transmission speed}
 The RS485 bus is transceiving at 250kBaud. At a maximum of 10 Bytes per frame, this results in a maximum rate of around 3000 frames per second.
 
-\subsubsection{Frame Structure}
+\subsection{Frame Structure}
 The frame structure of the protocol is as follows:
+\vspace{0.5cm}
 
-\begin{align}
+\begin{tabular}{cl}
     \textbf{Byte Number}     & \textbf{Data}                      \\
     1               & Startbyte (0x5A)          \\
     2               & Slave Adress              \\
@@ -27,4 +28,17 @@ The frame structure of the protocol is as follows:
     8               & Answer from Slave (data, LSB at 12- or 16bit data blocks) \\
     9               & Answer from Slave (data, MSB at 12- or 16bit data blocks) \\
     10              & Answer from Slave (Checksum)
-\end{align}
+\end{tabular}
+\vspace{0.5cm}
+
+As you can see is most of the frame the CPU talking to the slaves. Startbyte and Checksums are in place to make sure that an error free communication is possible. 
+
+The Checksum itself is easily calculated. This is done by XOR-ing bytes 1-4 and a constant 0xC5. In summary, the equation is as follows:
+
+\begin{equation}
+    Checksum = 0xC5 \oplus Byte\_1 \oplus Byte\_2 \oplus Byte\_3 \oplus Byte\_4
+\end{equation}
+
+Equally, the slaves are calculating their checksum with the same method, XOR-ing all their bytes with 0xC5. 
+
+If all the bytes are XOR-ed with each other and with the checksum itself and 0xC5 is still left, then the communication was error free and the data is uncompromized.
