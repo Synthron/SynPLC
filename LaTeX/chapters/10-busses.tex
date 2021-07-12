@@ -1,0 +1,30 @@
+\section{Busses}
+
+Every module has at least one common bus connector connecting via ribbon cable to the other modules. Alongside the 5V and GND voltage supply there also is the communication bus lines. On the modules there are two different busses possible: RS485 and CAN. 
+
+In order to maintain a stable communication, consider the use of twisted-pair ribbon cables.
+
+Both are working on a custom protocol, which is easy to implement on other controllers too. 
+
+\subsection{RS485}
+
+\subsubsection{Baudrate and Transmission speed}
+The RS485 bus is transceiving at 250kBaud. At a maximum of 10 Bytes per frame, this results in a maximum rate of around 3000 frames per second.
+
+\subsubsection{Frame Structure}
+The frame structure of the protocol is as follows:
+
+\begin{align}
+    \textbf{Byte Number}     & \textbf{Data}                      \\
+    1               & Startbyte (0x5A)          \\
+    2               & Slave Adress              \\
+    3               & Instruction and Register  \\
+    4               & Data (Not used when Instruction == Scan or Read) \\
+    5               & Data (only used at 12- or 16bit data blocks) \\
+    6               & Checksum \\
+    \\
+    7               & Answer from Slave (ACK or NACK with Error code) \\
+    8               & Answer from Slave (data, LSB at 12- or 16bit data blocks) \\
+    9               & Answer from Slave (data, MSB at 12- or 16bit data blocks) \\
+    10              & Answer from Slave (Checksum)
+\end{align}
