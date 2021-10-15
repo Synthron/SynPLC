@@ -1,0 +1,18 @@
+* G:\Repositories\microsps\pcbs\Simulationen\Draft1.asc
+Q2 Vg P001 0 0 BC847B
+V1 NC_01 0 5
+V2 Vin 0 PULSE(0 5 0.5 0 0 0.5 1 1)
+R3 N001 Vg 10k
+R4 P001 Vin 10k
+M1 Vout Vg 0 0 BUK9219-55A
+V3 N001 0 24
+M2 Vout Vg N001 N001 RSJ250P10
+.model NPN NPN
+.model PNP PNP
+.lib C:\Users\synth\Documents\LTspiceXVII\lib\cmp\standard.bjt
+.model NMOS NMOS
+.model PMOS PMOS
+.lib C:\Users\synth\Documents\LTspiceXVII\lib\cmp\standard.mos
+.tran 1
+.backanno
+.end

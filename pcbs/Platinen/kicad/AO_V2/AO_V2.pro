@@ -1,6 +1,6 @@
-update=14.06.2021 16:28:42
+update=Fr 15 Okt 2021 15:50:56 CEST
 version=1
-last_client=kicad
+last_client=eeschema
 [general]
 version=1
 RootSch=
@@ -196,15 +196,15 @@ Enabled=0
 [pcbnew/Layer.F.Adhes]
 Enabled=1
 [pcbnew/Layer.B.Paste]
-Enabled=0
+Enabled=1
 [pcbnew/Layer.F.Paste]
 Enabled=1
 [pcbnew/Layer.B.SilkS]
-Enabled=0
+Enabled=1
 [pcbnew/Layer.F.SilkS]
 Enabled=1
 [pcbnew/Layer.B.Mask]
-Enabled=0
+Enabled=1
 [pcbnew/Layer.F.Mask]
 Enabled=1
 [pcbnew/Layer.Dwgs.User]
@@ -244,7 +244,7 @@ dPairViaGap=0.25
 [schematic_editor]
 version=1
 PageLayoutDescrFile=
-PlotDirectoryName=./
+PlotDirectoryName=../../Schematics/
 SubpartIdSeparator=0
 SubpartFirstId=65
 NetFmtName=
