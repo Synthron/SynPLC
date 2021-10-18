@@ -1,22 +1,24 @@
 # SynPLC
 
 PLC with MicroControllers
-WORK IN PROGRESS
+
+**WORK IN PROGRESS**
 
 
 # To-Dos:
 
 ## Repo
  - [ ] Rewrite documentation in english
- - [ ] add reviewed PCBs
+ - [x] add reviewed PCBs
 
 ## Hardware
 
- - [ ] Order and assemble new PCBs with STM32s
+ - [x] Order new PCBs with STM32s
+ - [ ] Assemble new PCBs
  - [ ] Test new hardware
 
 ## Software
- - [ ] Write finish software on old hardware
+ - [ ] ~~Write finish software on old hardware~~
  - [ ] Write Software for new PCBs
  - [ ] Porting of SR485 protocol to new hardware
  - [ ] Define and program CAN protocol
