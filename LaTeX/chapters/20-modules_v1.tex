@@ -1,37 +1,83 @@
-\chapter{Module V1}
+\chapter{Modules V1}
+All V1 modules are now discontinued. The successors are the V2 modules.
+
+\vspace{2cm}
+
+\textbf{Further information:}
+
+V1 was meant to be a Proof of Concept system using easy-to-program ATmega328P with Arduino framework. 
+
+The Hardware was not as refined as wanted and a lot of compromises were made resulting in high production costs and hard-to-source parts. 
+
+\chapter{Modules V2}
+These are the current module revisions. If not stated otherwise, every module is powered by a STM32F103 microcontroller. 
+
+Every module is capable of both CAN and RS485, but not simultaneously. To select one of the two bus systems, set the Jumpers on the boards accodingly.
+
+\vspace{1cm}
+
+V2 was designed with the mindset of more generic circuitry without losing accuracy or stability. Even tho not every module was improved (talking about you, DO8...) major steps were made on the analog modules. In addition, the triac module (XP) is in testing now.
+
+Also all V1 modules got discontinued and decommissioned.\pagebreak
+
 \section{CPU}
-Die CPU ist das Herz der SPS. Sie basiert auf einem STM32F1-Controller und beinhaltet folgende Funktionen:
+The CPU is the heart of the PLC system and necessary for normal operation. It connects to all IO-modules and processes all the data.
+
+The CPU has the following interfaces:
 
 \begin{itemize}
-    \item RS485 oder CAN Businterface
-    \item USB-Schnittstelle für seriellen Monitor
-    \item ESP01-Modul für Webinterface
-    \item SD-Kartenslot für Strukturierten Text
-    \item DC/DC-Converter als Stromversorgung
+    \item RS485 and CAN Businterface
+    \item USB-Interface for serial monitor
+    \item ESP01-Modul as Webinterface (read-only as of now)
+    \item SD-card for structured text (WIP) and log files
+    \item DC/DC-Converter as power supply for the whole system
 \end{itemize}
 
-Der DCDC-Converter bietet einen ESD-geschützten 24V-Eingang und liefert 5V bei 10W Ausgangsleistung. Diese Spannung liegt am Busstecker an und versorgt die anderen Module.
+The DC/DC-Converter uses an ESD-safe 24V DC-input to generate 5V DC at 10W output power. This voltage is available at the bus connector and providing power to all modules in the system.
 
-\section{DO}
-Das DO (Digital-Output) stellt 8 24V-Ausgänge mit einer Belastbarkeit von jeweils 0,5A zur Verfügung. Die 24V-Spannung wird extern angelegt. 
-Gleichzeitig werden die Ausgänge rückgelesen, sodass der Status angezeigt werden kann.
+It has no seperate ID since it is a one-of-a-kind module. In later revisions, there will be measures for redundancy available, but not for now.
 
-Die LEDs auf der Frontplatte zeigen an, ob ein Kanal High oder Low ist. Dadurch wird ein optisches Feedback gegeben. 
+\section{DO8}
+The DO8 (Digital Output 8-channel) is providing 8 channels of 24V compatible outputs with a current rating of 0.5A each. The channels are galvanically isolated from the system voltage via optoisolators. 
 
-Das DO hat einen Schutzmechanismus gegen Überlastung der Ausgänge. Wenn der Controller bemerkt, dass ein Ausgang kurzgeschlossen ist, wird dieser deaktiviert. Nun werden alle 100ms der Ausgang wieder aktiviert und nachgeschaut, ob der Kurzschluss behoben wurde. Wenn ja, bleibt der Ausgang aktiviert, wenn nicht, wird das "Polling" fortgesetzt, bis die CPU den Ausgang deaktiviert. 
+The 24V Output voltage has to be supplied on the connector. 
 
-Während einem aktiven Fehler ist das jeweilige Bit im Fehlerspeicher gesetzt. Beim Zugriff der CPU auf das Modul wird dieser Speicher einmal pro Zyklus ausgelesen. 
+To prevent major faults caused by short circuits, the output channels are measured back and compared to their set value. If a channel differs from its value, the module sets an error bit and shuts off the faulty channel.
+
+On the front are 8 LEDs, indicating the status of the output channels. 
+
+%hier noch die Register beschreiben
 
 \section{DI}
-Das DI bietet 8 Eingänge mit ESD-Schutz und zwei galvanisch getrennten Potentialen. Ein High-Pegel wird ab einer Eingangsspannung von ca. 7,5V erkannt. Die Eingänge sind bis 33V spannungsfest und verbrauchen einen Maximalstrom von 2mA. 
+The DI8 (Digital Input 8-channel) is providing 8 channels of 24V compatiple inputs, divided into two sets of 4 Inputs where both sets are galvanically isolated from each other. The maximum input current is limited to 2mA. The channels are galvanically isolated from the system voltage via optoisolators.
 
-Auf der Frontplatte ist eine LED je Kanal, welche den Status anzeigt. 
+For normal operation, the system ground fromt the inputs need to be connected. 
+
+The channels are ESD safe and can tolerate up to 33V DC. Reverse-Polarity and overcurrent protections are in place. 
+
+A digital Low-Level is defined as 0..5 VDC.
+
+A digital HIGH-Level is defined as 10..33 VDC.
+
+% Hier die Register beschreiben
 
 \section{AO}
-Das AO stellt vier analoge Ausgänge zur Verfügung, die jeweils entweder 0 bis 10V Konstantspannung oder 0 bis 20mA Konstantstrom liefern. Die Umschaltung erfolgt dabei über Relais. 
+The AO4 (Analog Output 4-channel) is providing 4 channels of analog output, each capable of supplying either 0..10V CV or 0..20mA CC at a resolution of 12bits. The switch between CV and CC is managed by a relay.
+
+The output resolution is set at 16bits, giving a 0.15mV or 0.30$\mu$A resolution. 
+
+The channels are electrically isolated from the system, so at least 15V with common analog grond have to be provided.
+
+On the front are 4 LEDs indicating if the channel is actively being used. 
+
+% Hier die Register beschreiben
 
 \section{AI}
-Das AI stellt vier analoge Eingänge bereit, die jeweils entweder 0 bis 10V Konstantspannung oder 0 bis 20mA Konstantstrom messen können. Die Umschaltung erfolgt über MOSFETs. 
+The AI4 (Analog Input 4-channel) is providing 4 channels of analog inputs, capable of meauring 0..10V or 0..20mA each. 
+
+The input resolution is set at 12bits.
+
+The channels are electrically isolated from the system.
+
 
 \section{XT}
-Das XT stellt vier Triac-Ausgänge auf zwei Spannungsdomänen bereit. Jede Domäne verfügt über eine eigene Nulldurchgangserkennung. Die Kanäle können max 230V und 1A regeln. 
