@@ -58,6 +58,50 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
+#define ADR0_Pin GPIO_PIN_0
+#define ADR0_GPIO_Port GPIOA
+#define ADR1_Pin GPIO_PIN_1
+#define ADR1_GPIO_Port GPIOA
+#define ADR2_Pin GPIO_PIN_2
+#define ADR2_GPIO_Port GPIOA
+#define ADR3_Pin GPIO_PIN_3
+#define ADR3_GPIO_Port GPIOA
+#define ADR4_Pin GPIO_PIN_4
+#define ADR4_GPIO_Port GPIOA
+#define CH1_Pin GPIO_PIN_5
+#define CH1_GPIO_Port GPIOA
+#define CH2_Pin GPIO_PIN_6
+#define CH2_GPIO_Port GPIOA
+#define CH3_Pin GPIO_PIN_7
+#define CH3_GPIO_Port GPIOA
+#define FB1_Pin GPIO_PIN_0
+#define FB1_GPIO_Port GPIOB
+#define FB2_Pin GPIO_PIN_1
+#define FB2_GPIO_Port GPIOB
+#define FB3_Pin GPIO_PIN_2
+#define FB3_GPIO_Port GPIOB
+#define DIR_Pin GPIO_PIN_12
+#define DIR_GPIO_Port GPIOB
+#define CH4_Pin GPIO_PIN_8
+#define CH4_GPIO_Port GPIOA
+#define CH5_Pin GPIO_PIN_9
+#define CH5_GPIO_Port GPIOA
+#define CH6_Pin GPIO_PIN_10
+#define CH6_GPIO_Port GPIOA
+#define CH7_Pin GPIO_PIN_11
+#define CH7_GPIO_Port GPIOA
+#define CH8_Pin GPIO_PIN_12
+#define CH8_GPIO_Port GPIOA
+#define FB4_Pin GPIO_PIN_3
+#define FB4_GPIO_Port GPIOB
+#define FB5_Pin GPIO_PIN_4
+#define FB5_GPIO_Port GPIOB
+#define FB6_Pin GPIO_PIN_5
+#define FB6_GPIO_Port GPIOB
+#define FB7_Pin GPIO_PIN_6
+#define FB7_GPIO_Port GPIOB
+#define FB8_Pin GPIO_PIN_7
+#define FB8_GPIO_Port GPIOB
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */
