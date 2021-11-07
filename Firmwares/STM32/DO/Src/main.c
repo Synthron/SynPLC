@@ -102,8 +102,10 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-    int a = 0;
-    a = 3;
+    HAL_GPIO_WritePin(GPIOB, GPIO_PIN_7, 1);
+    HAL_Delay(100);
+    HAL_GPIO_WritePin(GPIOB, GPIO_PIN_7, 0);
+    HAL_Delay(100);
     
   }
   /* USER CODE END 3 */
