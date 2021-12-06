@@ -75,9 +75,16 @@ On the front are 4 LEDs indicating if the channel is actively being used.
 \section{AI}
 The AI4 (Analog Input 4-channel) is providing 4 channels of analog inputs, capable of meauring 0..10V or 0..20mA each. 
 
-The input resolution is set at 12bits.
+The input resolution is set at 12bits. At a maximum input volatage of 10V or input current of 20mA, this is giving a resolution of 2.4mV or 4.8mA.
 
 The channels are electrically isolated from the system.
 
 
 \section{XT}
+The XT4 (Interface Triac 4-channel) is providing 4 triacs on two seperate voltage domains. The channels can be used to either switch AC voltage to a supply or even using them in a PFC (phase-fired controller) mode. 
+
+For PFC mode each voltage domain has a Zero-Crossing-Detection (ZCD) and can control the triacs with PWM. The ZCD also calculates the frequency of the AC voltage automatically and compensates for frequency drift. 
+
+Each channel is rated for up to 230V and 1A. Keep in mind that the triacs can become quite hot. 
+
+All channels are electrically isolated from the system. The two voltage domains are also isolated from each other. 

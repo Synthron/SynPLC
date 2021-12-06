@@ -10,7 +10,7 @@
 \contentsline {subsection}{\numberline {3.1.2}Frame Structure}{3}{subsection.11}%
 \contentsline {subsection}{\numberline {3.1.3}Slave Addresses}{4}{subsection.13}%
 \contentsline {subsection}{\numberline {3.1.4}Instructions}{4}{subsection.14}%
-\contentsline {subsection}{\numberline {3.1.5}ACK, NACK and Error Codes}{4}{subsection.15}%
+\contentsline {subsection}{\numberline {3.1.5}ACK, NACK and Error Codes}{5}{subsection.15}%
 \contentsline {chapter}{\numberline {4}Modules V1}{6}{chapter.16}%
 \contentsline {chapter}{\numberline {5}Modules V2}{7}{chapter.17}%
 \contentsline {section}{\numberline {5.1}CPU}{8}{section.18}%
@@ -19,4 +19,3 @@
 \contentsline {section}{\numberline {5.4}AO}{9}{section.21}%
 \contentsline {section}{\numberline {5.5}AI}{9}{section.22}%
 \contentsline {section}{\numberline {5.6}XT}{9}{section.23}%
-\providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 

@@ -1,24 +1,25 @@
-Circuit: * G:\Repositories\microsps\pcbs\Simulationen\Draft1.asc
+Circuit: * Z:\media\marco\Daten\Repositories\microsps\pcbs\Simulationen\Draft1.asc
 
-Limiting rise time of source v2 to 0.05
-Limiting fall time of source v2 to 0.05
-WARNING: Less than two connections to node NC_01.  This node is used by V1.
+Limiting rise time of source v3 to 0.01
+Limiting fall time of source v3 to 0.01
+Limiting rise time of source v2 to 0.01
+Limiting fall time of source v2 to 0.01
 Direct Newton iteration for .op point succeeded.
 
-Date: Thu Jul 15 19:41:36 2021
-Total elapsed time: 0.112 seconds.
+Date: Thu Nov 18 20:06:06 2021
+Total elapsed time: 0.138 seconds.
 
 tnom = 27
 temp = 27
 method = modified trap
-totiter = 2572
-traniter = 2563
-tranpoints = 1195
-accept = 1151
-rejected = 44
-matrix size = 20
-fillins = 6
+totiter = 3579
+traniter = 3563
+tranpoints = 1454
+accept = 1343
+rejected = 111
+matrix size = 17
+fillins = 0
 solver = Normal
-Matrix Compiler1: 1.42 KB object code size  0.4/0.2/[0.1]
-Matrix Compiler2: 1.63 KB object code size  0.2/0.2/[0.1]
+Matrix Compiler1: 758 bytes object code size  0.3/0.1/[0.1]
+Matrix Compiler2: off  [0.1]/0.1/0.1
 
