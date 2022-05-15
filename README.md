@@ -8,9 +8,10 @@ PLC with MicroControllers
 # To-Dos:
 
 ## Repo
- - [ ] Rewrite documentation in english
+ - [x] Rewrite documentation in english
  - [x] add reviewed PCBs
-
+ - [ ] fill out tech specs of modules once programmed
+ 
 ## Hardware
 
  - [x] Order new PCBs with STM32s
