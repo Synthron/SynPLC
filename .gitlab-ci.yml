@@ -1,0 +1,78 @@
+# default docker container for Arduino compiling
+image: zoobab/arduino-cli
+
+stages:
+  - latex
+  - compile
+
+# Making the PDF easy to download as artifact, may deploy it back into the git some time later
+deploy-pdf:
+  stage: latex
+  script:
+    - cp LaTeX/tech-note.pdf documentation.pdf
+  artifacts:
+    paths:
+      - documentation.pdf
+  only:
+    changes:
+      - LaTeX/*
+
+
+# Compile and save the production files for the DI8-2 Module. All files available as artifact
+DI8-2:
+  stage: compile
+  before_script:
+    - mkdir output-DI8-2/
+    - rm -R /tmp/arduino-sketch*
+    - arduino-cli core install arduino:avr
+  script:
+    - arduino-cli compile -b arduino:avr:uno -v Firmwares/SynPLC_DI8-2_V1
+    - cp /tmp/arduino-sketch-*/SynPLC_DI8-2_V1.ino.with_bootloader.hex output-DI8-2/SynPLC_DI8-2_V1_bootloader.hex
+    - cp /tmp/arduino-sketch-*/SynPLC_DI8-2_V1.ino.hex output-DI8-2/SynPLC_DI8-2_V1.hex
+    - cp /tmp/arduino-sketch-*/SynPLC_DI8-2_V1.ino.eep output-DI8-2/SynPLC_DI8-2_V1.eep
+    - cp /tmp/arduino-sketch-*/SynPLC_DI8-2_V1.ino.elf output-DI8-2/SynPLC_DI8-2_V1.elf
+  artifacts:
+    paths:
+      - output-DI8-2/
+  only:
+    changes:
+      - Firmwares/SynPLC_DI8-2_V1/*
+
+# Compile and save the production files for the DO8-1 Module. All files available as artifact
+DO8-1:
+  stage: compile
+  before_script:
+    - mkdir output-DO8-1/
+    - rm -R /tmp/arduino-sketch*
+    - arduino-cli core install arduino:avr
+  script:
+    - arduino-cli compile -b arduino:avr:uno -v Firmwares/SynPLC_DO8-1_V1
+    - cp /tmp/arduino-sketch-*/SynPLC_DO8-1_V1.ino.with_bootloader.hex output-DO8-1/SynPLC_DO8-1_V1_bootloader.hex
+    - cp /tmp/arduino-sketch-*/SynPLC_DO8-1_V1.ino.hex output-DO8-1/SynPLC_DO8-1_V1.hex
+    - cp /tmp/arduino-sketch-*/SynPLC_DO8-1_V1.ino.eep output-DO8-1/SynPLC_DO8-1_V1.eep
+    - cp /tmp/arduino-sketch-*/SynPLC_DO8-1_V1.ino.elf output-DO8-1/SynPLC_DO8-1_V1.elf
+  artifacts:
+    paths:
+      - output-DO8-1/
+  only:
+    changes:
+      - Firmwares/SynPLC_DO8-1_V1/*
+
+# Compile and save the production files for the DUE-Mainboard. All files available as artifact
+# These files need a different core and thus take longer to compile. Also different production files
+#due:
+#  stage: compile
+#  before_script:
+#    - mkdir output-due/
+#    - arduino-cli core install arduino:sam
+#  script:
+#    - arduino-cli compile -b arduino:sam:arduino_due_x -v mainboard-due
+#    - cp /tmp/arduino-sketch*/mainboard-due.ino.map output-due/firmware.map
+#    - cp /tmp/arduino-sketch*/mainboard-due.ino.bin output-due/firmware.bin
+#    - cp /tmp/arduino-sketch*/mainboard-due.ino.elf output-due/firmware.elf
+#  artifacts:
+#    paths:
+#      - output-due/
+#  only:
+#    changes:
+#      - mainboard-due/*
