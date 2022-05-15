@@ -14,7 +14,7 @@ PLC with MicroControllers
 ## Hardware
 
  - [x] Order new PCBs with STM32s
- - [ ] Assemble new PCBs
+ - [x] Assemble new PCBs
  - [ ] Test new hardware
 
 ## Software
@@ -23,5 +23,5 @@ PLC with MicroControllers
  - [ ] Porting of SR485 protocol to new hardware
  - [ ] Define and program CAN protocol
  - [ ] Write generalized Code for CPU
- - [ ] define structured Text
- - [ ] import structured text ad parse into running code
+ - [ ] ~~define structured Text~~
+ - [ ] ~~import structured text ad parse into running code~~
