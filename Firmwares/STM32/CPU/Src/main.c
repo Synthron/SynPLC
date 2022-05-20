@@ -104,9 +104,11 @@ int main(void)
   uint8_t data2[5] = {0X5A, 0x23, 0x21, 0,0};
   uint8_t rec[5] = {0,0,0,0,0};
 
+  uint8_t hb_counter = 0;
+
   HAL_GPIO_WritePin(GPIOB, GPIO_PIN_5, 0);
   timer_init();
-
+  HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_15);
 
   HAL_Delay(100);
   /* USER CODE END 2 */
@@ -118,7 +120,7 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-
+    
 
     data1[3] = count;
     data1[4] = data1[0] ^ data1[1] ^ data1[2] ^ data1[3] ^ 0xC5;
@@ -128,11 +130,10 @@ int main(void)
     delay_us(1);
     HAL_GPIO_WritePin(GPIOB, GPIO_PIN_5, 0);
     HAL_UART_Receive(&huart3, rec, 2, 1000);
-    if(rec[0] == 0xC0 && rec[1] == 0x05)
-      HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_10);
+
     HAL_Delay(100);
 
-    HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_15);
+    
 
     data2[3] = 255 - count;
     data2[4] = data2[0] ^ data2[1] ^ data2[2] ^ data2[3] ^ 0xC5;
@@ -142,12 +143,18 @@ int main(void)
     delay_us(1);
     HAL_GPIO_WritePin(GPIOB, GPIO_PIN_5, 0);
     HAL_UART_Receive(&huart3, rec, 2, 1000);
-    if(rec[0] == 0xC0 && rec[1] == 0x05)
-      HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_10);
+    
     HAL_Delay(100);
 
-    HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_15);
+    
     count++;
+
+    hb_counter++;
+    if (hb_counter >= 2)
+    {
+      HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_3);
+      hb_counter = 0;
+    }
 
 
   }
