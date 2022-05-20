@@ -21,6 +21,7 @@
 #include "can.h"
 #include "rtc.h"
 #include "spi.h"
+#include "tim.h"
 #include "usart.h"
 #include "gpio.h"
 
@@ -94,17 +95,20 @@ int main(void)
   MX_USART2_UART_Init();
   MX_USART3_UART_Init();
   MX_USB_PCD_Init();
+  MX_TIM1_Init();
   /* USER CODE BEGIN 2 */
 
-uint8_t count = 0;
+  uint8_t count = 0x0;
 
-uint8_t data[5] = {0X5A, 0x0, 0x21, 0,0};
-uint8_t rec[2] = {0,0};
+  uint8_t data1[5] = {0X5A, 0x21, 0x21, 0,0};
+  uint8_t data2[5] = {0X5A, 0x23, 0x21, 0,0};
+  uint8_t rec[5] = {0,0,0,0,0};
 
-HAL_GPIO_WritePin(GPIOB, GPIO_PIN_5, 1);
+  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_5, 0);
+  timer_init();
 
 
-
+  HAL_Delay(100);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -112,25 +116,43 @@ HAL_GPIO_WritePin(GPIOB, GPIO_PIN_5, 1);
   while (1)
   {
     /* USER CODE END WHILE */
-    data[3] = count;
-    data[4] = data[0] ^ data[1] ^ data[2] ^ data[3];
-    HAL_UART_Transmit(&huart3, data , 5, 10);
-    HAL_GPIO_WritePin(GPIOB, GPIO_PIN_5, 0);
-    HAL_UART_Receive(&huart3, rec, 3, 50);
-    HAL_GPIO_WritePin(GPIOB, GPIO_PIN_5, 1);
-    count++;
-    HAL_Delay(500);
-
-
-
-
-
 
     /* USER CODE BEGIN 3 */
+
+
+    data1[3] = count;
+    data1[4] = data1[0] ^ data1[1] ^ data1[2] ^ data1[3] ^ 0xC5;
+    HAL_GPIO_WritePin(GPIOB, GPIO_PIN_5, 1);
+    delay_us(1);
+    HAL_UART_Transmit(&huart3, data1, 5, 100);
+    delay_us(1);
+    HAL_GPIO_WritePin(GPIOB, GPIO_PIN_5, 0);
+    HAL_UART_Receive(&huart3, rec, 2, 1000);
+    if(rec[0] == 0xC0 && rec[1] == 0x05)
+      HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_10);
+    HAL_Delay(100);
+
+    HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_15);
+
+    data2[3] = 255 - count;
+    data2[4] = data2[0] ^ data2[1] ^ data2[2] ^ data2[3] ^ 0xC5;
+    HAL_GPIO_WritePin(GPIOB, GPIO_PIN_5, 1);
+    delay_us(1);
+    HAL_UART_Transmit(&huart3, data2, 5, 100);
+    delay_us(1);
+    HAL_GPIO_WritePin(GPIOB, GPIO_PIN_5, 0);
+    HAL_UART_Receive(&huart3, rec, 2, 1000);
+    if(rec[0] == 0xC0 && rec[1] == 0x05)
+      HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_10);
+    HAL_Delay(100);
+
+    HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_15);
+    count++;
+
+
   }
   /* USER CODE END 3 */
 }
-
 
 /**
   * @brief System Clock Configuration
@@ -152,7 +174,7 @@ void SystemClock_Config(void)
   RCC_OscInitStruct.HSIState = RCC_HSI_ON;
   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
-  RCC_OscInitStruct.PLL.PLLMUL = RCC_PLL_MUL6;
+  RCC_OscInitStruct.PLL.PLLMUL = RCC_PLL_MUL9;
   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
   {
     Error_Handler();
@@ -167,13 +189,13 @@ void SystemClock_Config(void)
   RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV2;
   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
 
-  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_1) != HAL_OK)
+  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_2) != HAL_OK)
   {
     Error_Handler();
   }
   PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_RTC|RCC_PERIPHCLK_USB;
   PeriphClkInit.RTCClockSelection = RCC_RTCCLKSOURCE_LSE;
-  PeriphClkInit.UsbClockSelection = RCC_USBCLKSOURCE_PLL;
+  PeriphClkInit.UsbClockSelection = RCC_USBCLKSOURCE_PLL_DIV1_5;
   if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInit) != HAL_OK)
   {
     Error_Handler();
@@ -182,7 +204,16 @@ void SystemClock_Config(void)
 
 /* USER CODE BEGIN 4 */
 
+void timer_init()
+{
+    HAL_TIM_Base_Start(&htim1);
+}
 
+void delay_us (uint16_t us)
+{
+	__HAL_TIM_SET_COUNTER(&htim1,0);  // set the counter value a 0
+	while (__HAL_TIM_GET_COUNTER(&htim1) < us);  // wait for the counter to reach the us input in the parameter
+}
 
 
 

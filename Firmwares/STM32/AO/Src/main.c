@@ -6,13 +6,12 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; Copyright (c) 2021 STMicroelectronics.
-  * All rights reserved.</center></h2>
+  * Copyright (c) 2022 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under BSD 3-Clause license,
-  * the "License"; You may not use this file except in compliance with the
-  * License. You may obtain a copy of the License at:
-  *                        opensource.org/licenses/BSD-3-Clause
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
   */
@@ -21,15 +20,14 @@
 #include "main.h"
 #include "can.h"
 #include "crc.h"
+#include "i2c.h"
 #include "tim.h"
 #include "usart.h"
 #include "gpio.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "stdbool.h"
 
-#include "rs485.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -60,29 +58,10 @@ void SystemClock_Config(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-  uint8_t address = 0;
-  uint8_t reg_out = 0;
-  uint8_t reg_err = 0;
-  uint8_t shad_err = 0;
-  uint8_t reg_feedback = 0;
-  bool panic = false;
+#define MCP_ADDR 0b11000000
 
-
-/*
-  Reg-Addresses:
-    0x1 = Output Reg
-    0xE = FeedBack Reg
-    0xF = Error Reg
-
-*/
-
-
-
-
-
-
-
-
+uint8_t address = 0;
+uint8_t analog_state = 0x00; //unteres Nibble: 1 = CC
 /* USER CODE END 0 */
 
 /**
@@ -92,7 +71,7 @@ void SystemClock_Config(void);
 int main(void)
 {
   /* USER CODE BEGIN 1 */
-
+  HAL_I2C_Master_Transmit(&hi2c1, MCP_ADDR, );
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -116,17 +95,9 @@ int main(void)
   MX_CAN_Init();
   MX_CRC_Init();
   MX_USART3_UART_Init();
+  MX_I2C1_Init();
   MX_TIM1_Init();
   /* USER CODE BEGIN 2 */
-  Slave_Init();
-  timer_init();
-  uint16_t protocol_return = 0;
-
-  reg_out = 0x00;
-  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_12, 0); // set Direction to read
-  set_Output();
-
-
 
   /* USER CODE END 2 */
 
@@ -137,16 +108,6 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-    //Slave_Init();
-
-
-    protocol_return = DO_Protocol(address, reg_feedback, reg_err,  reg_out);
-    if ((protocol_return & 0xFF00) == 0x0A00)
-      reg_out = (uint8_t)(protocol_return & 0x00FF);
-    set_Output();
-    //debug_listen();
-    
-
   }
   /* USER CODE END 3 */
 }
@@ -193,79 +154,18 @@ void SystemClock_Config(void)
 /* USER CODE BEGIN 4 */
 void Slave_Init()
 {
-  address = (0x1<<5) | 
-            ( HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_0) |
-             (HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_1) << 1) |
-             (HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_2) << 2) |
-             (HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_3) << 3) |
-             (HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_4) << 4) );
+  address = 0x30 + 
+            ( HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_0) +
+             (HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_1) << 1) +
+             (HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_2) << 2) +
+             (HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_3) << 3) +
+             (HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_4) << 4)
+            );
+
+  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_12, 0); // set Direction to read
+
 }
 
-void set_Output()
-{
-  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5,  (reg_out & 0x01));
-  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_6,  (reg_out & 0x02)>>1);
-  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_7,  (reg_out & 0x04)>>2);
-  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_8,  (reg_out & 0x08)>>3);
-  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_9,  (reg_out & 0x10)>>4);
-  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_10, (reg_out & 0x20)>>5);
-  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_11, (reg_out & 0x40)>>6);
-  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_12, (reg_out & 0x80)>>7);
-}
-
-void check_Output()
-{
-  reg_feedback =  HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_0) +
-                  (HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_1) << 1) +
-                  (HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_2) << 2) +
-                  (HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_3) << 3) +
-                  (HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_4) << 4) +
-                  (HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_5) << 5) +
-                  (HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_6) << 6) +
-                  (HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_7) << 7);
-  if (reg_out != reg_feedback)
-  {
-    shad_err |= 0x01;
-    panic = true;
-  }
-  else 
-  {
-    shad_err &= 0xFE;
-    panic = false;
-  }
-}
-
-void out_Poll()
-{
-  uint8_t pinstat = reg_out ^ shad_err;
-  switch(pinstat)
-  {
-    case 0x01:
-      HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, 0);
-      break;
-    case 0x02:
-      HAL_GPIO_WritePin(GPIOA, GPIO_PIN_6, 0);
-      break;
-    case 0x04:
-      HAL_GPIO_WritePin(GPIOA, GPIO_PIN_7, 0);
-      break;
-    case 0x08:
-      HAL_GPIO_WritePin(GPIOA, GPIO_PIN_8, 0);
-      break;
-    case 0x10:
-      HAL_GPIO_WritePin(GPIOA, GPIO_PIN_9, 0);
-      break;
-    case 0x20:
-      HAL_GPIO_WritePin(GPIOA, GPIO_PIN_10, 0);
-      break;
-    case 0x40:
-      HAL_GPIO_WritePin(GPIOA, GPIO_PIN_11, 0);
-      break;
-    case 0x80:
-      HAL_GPIO_WritePin(GPIOA, GPIO_PIN_12, 0);
-      break;
-  }
-}
 
 /* USER CODE END 4 */
 

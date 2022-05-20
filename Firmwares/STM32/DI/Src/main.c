@@ -20,6 +20,7 @@
 #include "main.h"
 #include "can.h"
 #include "crc.h"
+#include "tim.h"
 #include "usart.h"
 #include "gpio.h"
 
@@ -101,9 +102,10 @@ int main(void)
   MX_CAN_Init();
   MX_CRC_Init();
   MX_USART3_UART_Init();
+  MX_TIM1_Init();
   /* USER CODE BEGIN 2 */
 
-  Slave_Init();
+  //Slave_Init();
   /* USER CODE END 2 */
 
   /* Infinite loop */

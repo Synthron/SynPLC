@@ -26,3 +26,13 @@ PLC with MicroControllers
  - [ ] Write generalized Code for CPU
  - [ ] ~~define structured Text~~
  - [ ] ~~import structured text ad parse into running code~~
+
+ ## Possible Fixes
+ - [ ] MAX485 with 5V supply voltage on all IO modules ?
+ - [ ] DIs and DO (alt. switches) re-soldering (dead channels)
+ - [ ] better connector for CPU
+ - [ ] parametrize RS485 lib a bit more
+
+
+## issues
+ - [ ] weird additional bytes sent by slave after ACK and CS???

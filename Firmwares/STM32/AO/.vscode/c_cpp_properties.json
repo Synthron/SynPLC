@@ -8,9 +8,8 @@
         {
             "name": "PlatformIO",
             "includePath": [
-                "/home/marco/Repos/synplc/Firmwares/STM32/DO/Inc",
-                "/home/marco/Repos/synplc/Firmwares/STM32/DO/Src",
-                "/home/marco/Repos/synplc/Firmwares/STM32/DO/lib/rs485",
+                "/home/marco/Repos/synplc/Firmwares/STM32/AO/Inc",
+                "/home/marco/Repos/synplc/Firmwares/STM32/AO/Src",
                 "/home/marco/.platformio/packages/framework-stm32cubef1/Drivers/CMSIS/Include",
                 "/home/marco/.platformio/packages/framework-stm32cubef1/Drivers/CMSIS/Device/ST/STM32F1xx/Include",
                 "/home/marco/.platformio/packages/framework-stm32cubef1/Drivers/STM32F1xx_HAL_Driver/Inc",
@@ -62,9 +61,8 @@
             "browse": {
                 "limitSymbolsToIncludedHeaders": true,
                 "path": [
-                    "/home/marco/Repos/synplc/Firmwares/STM32/DO/Inc",
-                    "/home/marco/Repos/synplc/Firmwares/STM32/DO/Src",
-                    "/home/marco/Repos/synplc/Firmwares/STM32/DO/lib/rs485",
+                    "/home/marco/Repos/synplc/Firmwares/STM32/AO/Inc",
+                    "/home/marco/Repos/synplc/Firmwares/STM32/AO/Src",
                     "/home/marco/.platformio/packages/framework-stm32cubef1/Drivers/CMSIS/Include",
                     "/home/marco/.platformio/packages/framework-stm32cubef1/Drivers/CMSIS/Device/ST/STM32F1xx/Include",
                     "/home/marco/.platformio/packages/framework-stm32cubef1/Drivers/STM32F1xx_HAL_Driver/Inc",

@@ -53,24 +53,21 @@ extern "C" {
 void Error_Handler(void);
 
 /* USER CODE BEGIN EFP */
-void timer_init();
-void delay_us (uint16_t us);
+
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
-#define CS1_Pin GPIO_PIN_12
-#define CS1_GPIO_Port GPIOB
-#define BOOT_Pin GPIO_PIN_9
-#define BOOT_GPIO_Port GPIOA
-#define ERROR_Pin GPIO_PIN_10
-#define ERROR_GPIO_Port GPIOA
-#define RUN_Pin GPIO_PIN_15
-#define RUN_GPIO_Port GPIOA
-#define HEARTBEAT_Pin GPIO_PIN_3
-#define HEARTBEAT_GPIO_Port GPIOB
-#define FLASH_Pin GPIO_PIN_4
-#define FLASH_GPIO_Port GPIOB
-#define DIR_Pin GPIO_PIN_5
+#define ADR0_Pin GPIO_PIN_0
+#define ADR0_GPIO_Port GPIOA
+#define ADR1_Pin GPIO_PIN_1
+#define ADR1_GPIO_Port GPIOA
+#define ADR2_Pin GPIO_PIN_2
+#define ADR2_GPIO_Port GPIOA
+#define ADR3_Pin GPIO_PIN_3
+#define ADR3_GPIO_Port GPIOA
+#define ADR4_Pin GPIO_PIN_4
+#define ADR4_GPIO_Port GPIOA
+#define DIR_Pin GPIO_PIN_12
 #define DIR_GPIO_Port GPIOB
 /* USER CODE BEGIN Private defines */
 
