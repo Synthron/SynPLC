@@ -104,6 +104,11 @@ void Error_Handler(void);
 #define FB8_GPIO_Port GPIOB
 /* USER CODE BEGIN Private defines */
 
+void Slave_Init();
+void set_Output();
+void check_Output();
+void out_Poll();
+
 /* USER CODE END Private defines */
 
 #ifdef __cplusplus
@@ -111,5 +116,3 @@ void Error_Handler(void);
 #endif
 
 #endif /* __MAIN_H */
-
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
