@@ -126,28 +126,28 @@ int main(void)
     data1[4] = data1[0] ^ data1[1] ^ data1[2] ^ data1[3] ^ 0xC5;
     HAL_GPIO_WritePin(GPIOB, GPIO_PIN_5, 1);
     delay_us(1);
-    HAL_UART_Transmit(&huart3, data1, 5, 100);
+    HAL_UART_Transmit(&huart3, data1, 5, 1);
     delay_us(1);
     HAL_GPIO_WritePin(GPIOB, GPIO_PIN_5, 0);
-    HAL_UART_Receive(&huart3, rec, 2, 1000);
+    HAL_UART_Receive(&huart3, rec, 2, 1);
 
-    HAL_Delay(100);
+    HAL_Delay(12);
 
     
 
-    data2[3] = 255 - count;
+    data2[3] = ~count;
     data2[4] = data2[0] ^ data2[1] ^ data2[2] ^ data2[3] ^ 0xC5;
     HAL_GPIO_WritePin(GPIOB, GPIO_PIN_5, 1);
     delay_us(1);
-    HAL_UART_Transmit(&huart3, data2, 5, 100);
+    HAL_UART_Transmit(&huart3, data2, 5, 1);
     delay_us(1);
     HAL_GPIO_WritePin(GPIOB, GPIO_PIN_5, 0);
-    HAL_UART_Receive(&huart3, rec, 2, 1000);
+    HAL_UART_Receive(&huart3, rec, 2, 1);
     
     HAL_Delay(100);
 
     
-    count++;
+    count = rand();
 
     hb_counter++;
     if (hb_counter >= 2)

@@ -1,10 +1,10 @@
 
 
 /** @file rs485.h
- * 
+ *
  * @brief RS485 lib
  *
- */ 
+ */
 
 #ifndef RS485_H
 #define RS485_H
@@ -14,19 +14,43 @@
 #include "stdbool.h"
 #include "tim.h"
 
-uint16_t DO_Protocol(uint8_t address,  uint8_t fb_reg, uint8_t err_reg, uint8_t out_reg);
-void listen();
-uint8_t debug_listen(uint8_t address);
-void respond2();
-void respond3();
+#define CMD_PING 0x00
+#define CMD_R8 0x10
+#define CMD_W8 0x20
+#define CMD_R16 0x50
+#define CMD_W16 0x60
+
+#define ACK 0xC0
+#define NACK 0x30
+#define CHECKSUM 0xC5
+
+#define ERR_OK 0x00
+#define ERR_REG 0x01
+#define ERR_INST 0x02
+#define ERR_PROC 0x0C
+#define ERR_CS 0x0D
+#define ERR_SYS 0x0F
+
+#define REG_ERR 0xF
+#define REG_IN 0x0     // DI and DO     - 8bit
+#define REG_OUT 0x1    // DO            - 8bit
+#define REG_CH1 0x2    // XT, AI and AO - 16bit
+#define REG_CH2 0x3    // XT, AI and AO - 16bit
+#define REG_CH3 0x4    // XT, AI and AO - 16bit
+#define REG_CH4 0x5    // XT, AI and AO - 16bit
+
+uint16_t DO_Protocol(uint8_t address, uint8_t fb_reg, uint8_t err_reg, uint8_t out_reg);
+uint8_t listen();
+void resp3();
 void garbage();
 void resp2();
-//void respond4();
 
 void timer_init();
-void delay_us (uint16_t us);
+void delay_us(uint16_t us);
 
-extern  uint8_t reg_out;
+extern uint8_t reg_out;
+
+
 
 #endif /* RS485_H */
 

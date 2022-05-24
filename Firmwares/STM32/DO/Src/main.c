@@ -28,7 +28,7 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "stdbool.h"
-
+#include "us_timer.h"
 #include "rs485.h"
 /* USER CODE END Includes */
 
@@ -71,16 +71,10 @@ void SystemClock_Config(void);
 /*
   Reg-Addresses:
     0x1 = Output Reg
-    0xE = FeedBack Reg
+    0x0 = FeedBack Reg
     0xF = Error Reg
 
 */
-
-
-
-
-
-
 
 
 /* USER CODE END 0 */
@@ -144,7 +138,11 @@ int main(void)
     if ((protocol_return & 0xFF00) == 0x0A00)
       reg_out = (uint8_t)(protocol_return & 0x00FF);
     set_Output();
-    //debug_listen();
+    //delay_us(5);
+    //check_Output();
+    //if (panic)
+    //  out_Poll();
+
     
 
   }
@@ -226,11 +224,13 @@ void check_Output()
   if (reg_out != reg_feedback)
   {
     shad_err |= 0x01;
+    reg_err = 0xC;
     panic = true;
   }
   else 
   {
     shad_err &= 0xFE;
+    reg_err = 0x0;
     panic = false;
   }
 }
