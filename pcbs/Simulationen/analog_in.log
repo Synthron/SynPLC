@@ -1,9 +1,6 @@
-Circuit: * Z:\media\marco\Daten\Repositories\microsps\pcbs\Simulationen\analog_in.asc
+Circuit: * Z:\media\marco\Daten\Repositories\synplc\pcbs\Simulationen\analog_in.asc
 
-WARNING: Node NC_01 is floating.
-
-WARNING: Less than two connections to node NC_01.  This node is used by I1.
-WARNING: Less than two connections to node NC_02.  This node is used by R4.
+WARNING: Less than two connections to node NC_01.  This node is used by V2.
 Direct Newton iteration failed to find .op point.  (Use ".option noopiter" to skip.)
 Starting Gmin stepping
 Gmin = 10
@@ -25,20 +22,21 @@ Gmin = 0
 Gmin stepping succeeded in finding the operating point.
 
 
-Date: Thu Nov 18 20:16:24 2021
+Date: Sat May 28 23:27:11 2022
 Total elapsed time: 0.104 seconds.
 
 tnom = 27
 temp = 27
 method = trap
-totiter = 2439
+totiter = 2441
 traniter = 0
 tranpoints = 0
 accept = 0
 rejected = 0
-matrix size = 20
-fillins = 8
+matrix size = 19
+fillins = 10
 solver = Normal
-Matrix Compiler1:      62 opcodes  0.3/0.2/[0.1]
-Matrix Compiler2: 1.67 KB object code size  0.3/0.3/[0.1]
+Thread vector: 4.3/3.4[2] 0.0/0.0[0] 0.8/1.2[1] 0.1/0.8[1]  2592/500
+Matrix Compiler1:      63 opcodes  0.4/0.2/[0.2]
+Matrix Compiler2: 1.63 KB object code size  0.2/0.2/[0.1]
 

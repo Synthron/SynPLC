@@ -1,13 +1,13 @@
 
 
-/** @file rs485.h
+/** @file synplc.h
  *
- * @brief RS485 lib
+ * @brief SynPLC-lib
  *
  */
 
-#ifndef RS485_H
-#define RS485_H
+#ifndef SYNPLC_H
+#define SYNPLC_H
 
 #include "main.h"
 #include "usart.h"
@@ -50,8 +50,22 @@ void delay_us(uint16_t us);
 
 extern uint8_t reg_out;
 
+/* 
+    define us-Timer functions
+  */
 
+void timer_init();
+void delay_us(uint16_t us);
 
-#endif /* RS485_H */
+/* 
+    define new UART functions
+    µs TIMEOUT instead of ms
+  */
 
-/*** end of file ***/
+HAL_StatusTypeDef UART_Receive(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size, uint32_t Timeout);
+
+static HAL_StatusTypeDef UART_Wait(UART_HandleTypeDef *huart, uint32_t Flag, FlagStatus Status, uint32_t Tickstart, uint32_t Timeout);
+
+#endif /* SYNPLC_H */
+
+/*** EOF ***/

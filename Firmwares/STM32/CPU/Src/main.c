@@ -131,7 +131,7 @@ int main(void)
     HAL_GPIO_WritePin(GPIOB, GPIO_PIN_5, 0);
     HAL_UART_Receive(&huart3, rec, 2, 1);
 
-    HAL_Delay(12);
+    delay_us(50);
 
     
 
@@ -144,13 +144,13 @@ int main(void)
     HAL_GPIO_WritePin(GPIOB, GPIO_PIN_5, 0);
     HAL_UART_Receive(&huart3, rec, 2, 1);
     
-    HAL_Delay(100);
+    delay_us(50);
 
     
     count = rand();
 
     hb_counter++;
-    if (hb_counter >= 2)
+    if (hb_counter >= 100)
     {
       HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_3);
       hb_counter = 0;

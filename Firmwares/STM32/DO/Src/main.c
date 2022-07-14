@@ -28,8 +28,7 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "stdbool.h"
-#include "us_timer.h"
-#include "rs485.h"
+#include "synplc.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -112,6 +111,7 @@ int main(void)
   MX_USART3_UART_Init();
   MX_TIM1_Init();
   /* USER CODE BEGIN 2 */
+
   Slave_Init();
   timer_init();
   uint16_t protocol_return = 0;
@@ -119,6 +119,7 @@ int main(void)
   reg_out = 0x00;
   HAL_GPIO_WritePin(GPIOB, GPIO_PIN_12, 0); // set Direction to read
   set_Output();
+
 
 
 
@@ -131,15 +132,15 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-    //Slave_Init();
 
-
+    set_Output();
+    
     protocol_return = DO_Protocol(address, reg_feedback, reg_err,  reg_out);
     if ((protocol_return & 0xFF00) == 0x0A00)
       reg_out = (uint8_t)(protocol_return & 0x00FF);
-    set_Output();
-    //delay_us(5);
-    //check_Output();
+    check_Output();
+    
+    
     //if (panic)
     //  out_Poll();
 
@@ -191,48 +192,33 @@ void SystemClock_Config(void)
 /* USER CODE BEGIN 4 */
 void Slave_Init()
 {
-  address = (0x1<<5) | 
-            ( HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_0) |
-             (HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_1) << 1) |
-             (HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_2) << 2) |
-             (HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_3) << 3) |
-             (HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_4) << 4) );
+  address = (0x1<<5) | (GPIOA->IDR & 0x1F);
 }
 
 void set_Output()
 {
-  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5,  (reg_out & 0x01));
-  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_6,  (reg_out & 0x02)>>1);
-  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_7,  (reg_out & 0x04)>>2);
-  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_8,  (reg_out & 0x08)>>3);
-  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_9,  (reg_out & 0x10)>>4);
-  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_10, (reg_out & 0x20)>>5);
-  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_11, (reg_out & 0x40)>>6);
-  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_12, (reg_out & 0x80)>>7);
+  uint16_t temp1 = 0xFFFF ^ ((~reg_out) << 5);
+  uint16_t temp2 = reg_out << 5;
+  GPIOA->ODR &= temp1;
+  GPIOA->ODR |= temp2;
 }
 
 void check_Output()
 {
-  reg_feedback =  HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_0) +
-                  (HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_1) << 1) +
-                  (HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_2) << 2) +
-                  (HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_3) << 3) +
-                  (HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_4) << 4) +
-                  (HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_5) << 5) +
-                  (HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_6) << 6) +
-                  (HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_7) << 7);
+  reg_feedback =  (GPIOB->IDR & 0xFF);
+  /*
   if (reg_out != reg_feedback)
   {
     shad_err |= 0x01;
-    reg_err = 0xC;
+    reg_err = ERR_PROC;
     panic = true;
   }
   else 
   {
     shad_err &= 0xFE;
-    reg_err = 0x0;
+    reg_err = ERR_OK;
     panic = false;
-  }
+  }*/
 }
 
 void out_Poll()
