@@ -11,6 +11,9 @@ Open Source modular PLC with Microcontrollers
 - [x] Rewrite documentation in english
 - [x] add reviewed PCBs
 - [ ] fill out tech specs of modules once programmed
+- [ ] Cleanup Repo
+  - [ ] better folder structure
+  - [ ] delete obsolete files
 
 ## Hardware
 
@@ -22,16 +25,31 @@ Open Source modular PLC with Microcontrollers
   - [ ] AO
   - [ ] AI
   - [ ] XT
+- [ ] New Modules
+  - [ ] CPU V2
+    - [ ] Layout
+    - [ ] Review
+    - [ ] Ordered
+  - [ ] Relais Module
+  - [ ] PWM Module
 
 ## Software
 
-- [ ] ~~Write finish software on old hardware~~
 - [ ] Write Software for new PCBs
+  - [ ] CPU
+  - [ ] DO
+  - [ ] DI
+  - [ ] AO
+  - [ ] AI
+  - [ ] XT
 - [ ] Porting of SR485 protocol to new hardware
+  - [ ] Make it use Interrupts
+  - [ ] Make it more efficient (processing)
+  - [ ] implement failsafes when no answer
 - [ ] Define and program CAN protocol
 - [ ] Write generalized Code for CPU
-- [ ] ~~define structured Text~~
-- [ ] ~~import structured text ad parse into running code~~
+- [ ] ~~define structured Text~~ (postponed)
+- [ ] ~~import structured text and parse into running code~~ (postponed)
 
 ## Possible Fixes
 
