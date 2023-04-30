@@ -1,0 +1,133 @@
+\documentclass[11pt, a4paper, listof=numbered, captions=tableheading, headinclude, table, xcdraw]{scrreprt}
+
+\usepackage[utf8]{inputenc}
+\usepackage{tikz}
+\usepackage{epigraph}
+\usepackage{amsmath}
+\usepackage{textgreek}
+\usepackage[LGRgreek]{mathastext}
+\usepackage{array}
+\usepackage{color}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{helvet}
+\usepackage{scrhack}
+%\usepackage{circuitikz}
+\renewcommand{\familydefault}{\sfdefault}
+
+\setlength{\emergencystretch}{\hsize}
+%\tolerance=9999
+ 
+\newcounter{divide}
+
+% für referenziertes Inhaltsverzeichnis
+\usepackage[hidelinks, hypertexnames=false]{hyperref}
+
+\usepackage{chngcntr}
+\counterwithin*{chapter}{divide}
+
+\renewcommand\epigraphflush{flushright}
+\renewcommand\epigraphsize{\normalsize}
+\setlength\epigraphwidth{0.7\textwidth}
+
+\definecolor{titlepagecolor1}{cmyk}{1,.39,.0,.27}
+\definecolor{titlepagecolor}{cmyk}{0,.82,.78,.30}
+
+\DeclareFixedFont{\titlefont}{T1}{ppl}{b}{it}{0.5in}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{\baselineskip}
+
+% Seitenränder festlegen
+\usepackage[top=1.5cm,bottom=1.5cm, includeheadfoot]{geometry}
+
+
+% ---------------------------------------
+% Titeldefinition
+\newcommand{\Titel}{Documentation\\SynPLC}
+\newcommand{\Caption}{An OpenSource PLC system with STM32 Controllers}
+\newcommand{\SignateAuthor}{\textit{Made with \LaTeX}}
+\newcommand{\Stand}{\textit{Stand: \today}}
+% Sonstiges in titel.ltx und titel-meta.ltx
+% ---------------------------------------
+
+% Kopf- und Fußzeile
+\usepackage[automark]{scrlayer-scrpage}
+
+
+
+% --------------------------------------------------------------------
+% Titelblatt
+% --------------------------------------------------------------------
+
+\input{titel/titel-meta.tex}
+\begin{document}
+\input{titel/titel.tex}
+
+
+% --------------------------------------------------------------------
+% Verzeichnisse
+% --------------------------------------------------------------------
+
+\pagenumbering{Roman}
+\renewcommand{\thechapter}{\Roman{chapter}}
+
+\setcounter{tocdepth}{2} %Ausblenden von Subsections etc..
+\cohead[I. Table of Contents]{I. Table of Contents}
+\pagestyle{scrheadings}
+\tableofcontents 	\newpage
+\cohead[II. List of Tables]{II. List of Tables}
+\pagestyle{scrheadings}
+\listoffigures 		\newpage
+\cohead[III. List of Figures]{III. List of Figures}
+\pagestyle{scrheadings}
+\listoftables 		\newpage
+\pagenumbering{arabic}
+
+\stepcounter{divide}
+
+\renewcommand{\thechapter}{\arabic{chapter}}
+
+% Kopfzeilen erst nach den Verzeichnissen
+
+\lohead[\today]{\today}
+\cohead[SynPLC V2.0]{SynPLC V2.0}
+\rohead[Marco Müller]{Marco Müller}
+\pagestyle{scrheadings}
+ 
+% --------------------------------------------------------------------
+% Ab hier der Inhalt
+% --------------------------------------------------------------------
+
+\input{chapters/00-about.tex} 				\newpage 	% Vorwort
+\input{chapters/05-summary.tex}				\newpage
+\input{chapters/10-busses.tex}				\newpage	% Bus Erklärung
+\input{chapters/20-modules_v1.tex} 			\newpage	% Module V1
+
+
+
+	
+
+% --------------------------------------------------------------------
+% abschließende Verzeichnisse
+% --------------------------------------------------------------------
+
+\pagestyle{empty}
+\vspace*{\fill}
+\begin{center}
+\hrulefill\\
+\vspace{4mm}
+	\begin{HUGE}
+		\textbf{Appendix}
+	\end{HUGE}\\
+\hrulefill
+\end{center}
+\vspace*{\fill}
+\newpage
+\pagestyle{plain}
+
+
+\appendix
+
+% --------------------------------------------------------------------
+\end{document}
