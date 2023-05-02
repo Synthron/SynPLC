@@ -20,8 +20,10 @@
 #include "main.h"
 #include "can.h"
 #include "fatfs.h"
+#include "i2c.h"
 #include "rtc.h"
 #include "sdio.h"
+#include "spi.h"
 #include "tim.h"
 #include "usart.h"
 #include "usb_device.h"
@@ -110,6 +112,8 @@ int main(void)
   MX_USART2_UART_Init();
   MX_FATFS_Init();
   MX_USB_DEVICE_Init();
+  MX_I2C1_Init();
+  MX_SPI2_Init();
   /* USER CODE BEGIN 2 */
 
   /* USER CODE END 2 */

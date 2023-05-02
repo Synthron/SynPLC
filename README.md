@@ -13,7 +13,7 @@ Open Source modular PLC with Microcontrollers
 - [ ] fill out tech specs of modules once programmed
 - [ ] Cleanup Repo
   - [ ] better folder structure
-  - [ ] delete obsolete files
+  - [X] delete obsolete files
 
 ## Hardware
 
@@ -27,8 +27,8 @@ Open Source modular PLC with Microcontrollers
   - [ ] XT
 - [ ] New Modules
   - [ ] CPU V2
-    - [ ] Layout
-    - [ ] Review
+    - [X] Layout
+    - [X] Review
     - [ ] Ordered
   - [ ] Relais Module
   - [ ] PWM Module

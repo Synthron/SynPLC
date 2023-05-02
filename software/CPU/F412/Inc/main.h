@@ -57,18 +57,28 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
+#define SPI_CS1_Pin GPIO_PIN_0
+#define SPI_CS1_GPIO_Port GPIOC
+#define SDIO_CardDetect_Pin GPIO_PIN_4
+#define SDIO_CardDetect_GPIO_Port GPIOA
+#define SDIO_WriteProtect_Pin GPIO_PIN_5
+#define SDIO_WriteProtect_GPIO_Port GPIOA
+#define TestPoint1_Pin GPIO_PIN_0
+#define TestPoint1_GPIO_Port GPIOB
+#define USB_Disconnect_Pin GPIO_PIN_13
+#define USB_Disconnect_GPIO_Port GPIOB
 #define RS485_DIR_Pin GPIO_PIN_8
 #define RS485_DIR_GPIO_Port GPIOA
+#define LED_BOOT_Pin GPIO_PIN_12
+#define LED_BOOT_GPIO_Port GPIOC
+#define LED_HEARTBEAT_Pin GPIO_PIN_2
+#define LED_HEARTBEAT_GPIO_Port GPIOD
 #define LED_ERROR_Pin GPIO_PIN_3
 #define LED_ERROR_GPIO_Port GPIOB
 #define LED_RUN_Pin GPIO_PIN_4
 #define LED_RUN_GPIO_Port GPIOB
 #define LED_FLASH_Pin GPIO_PIN_5
 #define LED_FLASH_GPIO_Port GPIOB
-#define LED_HEARTBEAT_Pin GPIO_PIN_6
-#define LED_HEARTBEAT_GPIO_Port GPIOB
-#define LED_BOOT_Pin GPIO_PIN_7
-#define LED_BOOT_GPIO_Port GPIOB
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */
