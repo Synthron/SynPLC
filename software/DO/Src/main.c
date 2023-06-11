@@ -60,10 +60,7 @@ void SystemClock_Config(void);
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
   uint8_t address = 0;
-  uint8_t reg_out = 0;
-  uint8_t reg_err = 0;
   uint8_t shad_err = 0;
-  uint8_t reg_feedback = 0;
   bool panic = false;
 
 
@@ -114,14 +111,15 @@ int main(void)
 
   Slave_Init();
   timer_init();
-  uint16_t protocol_return = 0;
 
   reg_out = 0x00;
   HAL_GPIO_WritePin(GPIOB, GPIO_PIN_12, 0); // set Direction to read
   set_Output();
 
-
-
+  init_485(address);
+  
+  __enable_irq();
+  HAL_UART_Receive_IT(&huart3, RxBuffer, 1);
 
   /* USER CODE END 2 */
 
@@ -134,10 +132,7 @@ int main(void)
     /* USER CODE BEGIN 3 */
 
     set_Output();
-    
-    protocol_return = DO_Protocol(address, reg_feedback, reg_err,  reg_out);
-    if ((protocol_return & 0xFF00) == 0x0A00)
-      reg_out = (uint8_t)(protocol_return & 0x00FF);
+    HAL_Delay(1);   
     check_Output();
     
     
@@ -190,6 +185,14 @@ void SystemClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
+
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
+{
+
+  parse_485();
+
+}
+
 void Slave_Init()
 {
   address = (0x1<<5) | (GPIOA->IDR & 0x1F);

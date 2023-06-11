@@ -26,7 +26,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "synplc.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -52,7 +52,7 @@
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 /* USER CODE BEGIN PFP */
-
+void Slave_Init(void);
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -105,7 +105,15 @@ int main(void)
   MX_TIM1_Init();
   /* USER CODE BEGIN 2 */
 
-  //Slave_Init();
+  timer_init();
+
+  Slave_Init();
+  init_485(address);
+  
+  
+  __enable_irq();
+  HAL_UART_Receive_IT(&huart3, RxBuffer, 1);
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -113,8 +121,10 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
+    reg_in = (GPIOA->IDR & 0x1FE0)>>5;
+    delay_us(100);
 
-    /* USER CODE BEGIN 3 */
+   /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
 }
@@ -159,16 +169,16 @@ void SystemClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
-void Slave_Init()
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 {
-  address = 0x00 + 
-            ( HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_0) +
-             (HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_1) << 1) +
-             (HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_2) << 2) +
-             (HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_3) << 3) +
-             (HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_4) << 4)
-            );
 
+  parse_485();
+
+}
+
+void Slave_Init(void)
+{
+  address = 0x00 + (GPIOA->IDR & 0x1F);
   reg_in = 0x00;
   HAL_GPIO_WritePin(GPIOB, GPIO_PIN_12, 0); // set Direction to read
 

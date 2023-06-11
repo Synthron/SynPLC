@@ -67,8 +67,24 @@ void Error_Handler(void);
 #define ADR3_GPIO_Port GPIOA
 #define ADR4_Pin GPIO_PIN_4
 #define ADR4_GPIO_Port GPIOA
+#define CC1_Pin GPIO_PIN_5
+#define CC1_GPIO_Port GPIOA
+#define CC2_Pin GPIO_PIN_6
+#define CC2_GPIO_Port GPIOA
+#define CC3_Pin GPIO_PIN_7
+#define CC3_GPIO_Port GPIOA
 #define DIR_Pin GPIO_PIN_12
 #define DIR_GPIO_Port GPIOB
+#define CC4_Pin GPIO_PIN_8
+#define CC4_GPIO_Port GPIOA
+#define LED_Ch1_Pin GPIO_PIN_9
+#define LED_Ch1_GPIO_Port GPIOA
+#define LED_Ch2_Pin GPIO_PIN_10
+#define LED_Ch2_GPIO_Port GPIOA
+#define LED_Ch3_Pin GPIO_PIN_11
+#define LED_Ch3_GPIO_Port GPIOA
+#define LED_Ch4_Pin GPIO_PIN_12
+#define LED_Ch4_GPIO_Port GPIOA
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */

@@ -27,7 +27,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "synplc.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -47,21 +47,23 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 /* USER CODE BEGIN PFP */
-
+void Slave_Init(void);
+void write_single(uint8_t channel, uint16_t output_raw);
+void write_all(uint16_t *data);
+void convert_dacs(uint16_t *data, uint8_t modes);
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-#define MCP_ADDR 0b11000000
+#define MCP_ADDR 0b11000010
 
 uint8_t address = 0;
-uint8_t analog_state = 0x00; //unteres Nibble: 1 = CC
+uint16_t dac_vals[4];
 /* USER CODE END 0 */
 
 /**
@@ -71,7 +73,7 @@ uint8_t analog_state = 0x00; //unteres Nibble: 1 = CC
 int main(void)
 {
   /* USER CODE BEGIN 1 */
-  HAL_I2C_Master_Transmit(&hi2c1, MCP_ADDR, );
+  //HAL_I2C_Master_Transmit(&hi2c1, MCP_ADDR, );
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -98,7 +100,13 @@ int main(void)
   MX_I2C1_Init();
   MX_TIM1_Init();
   /* USER CODE BEGIN 2 */
+  timer_init();
+  Slave_Init();
+  init_485(address);
 
+  __enable_irq();
+  HAL_UART_Receive_IT(&huart3, RxBuffer, 1);
+  
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -108,6 +116,21 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
+
+    //set DAC values
+    convert_dacs(dac_out, dac_stat);
+    //update dacs
+    write_all(dac_vals);
+    //set LEDs
+    for(int i = 0; i < 4; i++)
+    {
+      if(dac_out[i] != 0)
+        HAL_GPIO_WritePin(CC1_GPIO_Port, CC1_Pin + i, 1);
+      else
+        HAL_GPIO_WritePin(CC1_GPIO_Port, CC1_Pin + i, 0);
+    }
+
+    
   }
   /* USER CODE END 3 */
 }
@@ -152,20 +175,57 @@ void SystemClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
-void Slave_Init()
-{
-  address = 0x30 + 
-            ( HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_0) +
-             (HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_1) << 1) +
-             (HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_2) << 2) +
-             (HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_3) << 3) +
-             (HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_4) << 4)
-            );
 
-  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_12, 0); // set Direction to read
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
+{
+
+  parse_485();
 
 }
 
+void convert_dacs(uint16_t *data, uint8_t modes)
+{
+  for(int i = 0; i < 4; i++)
+  {
+    if(modes & (0x01 << i)) // CC mode
+      dac_vals[i] = data[i] / 5;
+    else 
+      dac_vals[i] = (uint16_t)((float)data[i] / 2.5);
+  }
+}
+
+void Slave_Init(void)
+{
+  address = 0x60 + (GPIOA->IDR & 0x1F);
+  GPIOA->ODR &= ~(0x1FE0); // set relais and LEDs to off
+  HAL_GPIO_WritePin(DIR_GPIO_Port, DIR_Pin, 0); // set Direction to read
+}
+
+void write_single(uint8_t channel, uint16_t output_raw)
+{
+  HAL_Delay(20);
+  uint8_t data[4];
+  data[0] = 0x58 | ((channel << 1)&0x06); //single write, update after last acknowledge
+  data[1] = 0x90 | ((output_raw >> 8)& 0x0F);
+  data[2] = output_raw & 0x00FF;
+  HAL_I2C_Master_Transmit(&hi2c1, MCP_ADDR, data, 3, 1);
+}
+
+void write_all(uint16_t *data)
+{
+  //HAL_Delay(25);
+  uint8_t send_dat[8];
+  send_dat[0] = (data[0] >> 8) & 0x0F;
+  send_dat[1] = data[0] & 0x00FF;
+  send_dat[2] = (data[1] >> 8) & 0x0F;
+  send_dat[3] = data[1] & 0x00FF;
+  send_dat[4] = (data[2] >> 8) & 0x0F;
+  send_dat[5] = data[2] & 0x00FF;
+  send_dat[6] = (data[3] >> 8) & 0x0F;
+  send_dat[7] = data[3] & 0x00FF;
+  HAL_I2C_Master_Transmit(&hi2c1, MCP_ADDR, send_dat, 8, 1);
+
+}
 
 /* USER CODE END 4 */
 

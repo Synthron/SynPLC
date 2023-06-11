@@ -54,6 +54,7 @@ uint8_t RxBuffer[30];
 uint8_t reg_out, reg_in, reg_feedback;
 uint16_t adc_in[4];
 uint16_t dac_out[4];
+uint8_t dac_stat; // ||||ch4 cc/cv|ch3 cc/cv|ch2 cc/cv|ch1 cc/cv
 
 void init_485 (uint8_t addr);
 void parse_485(void);
@@ -72,12 +73,14 @@ uint8_t checksum_485;
 uint8_t checkresult;
 uint8_t errflag_485; // -|-|-|-| Checksum Error | Processing Error | Instruction Error | Register Error
 
-uint8_t out_buf2[2];
-uint8_t out_buf3[3];
+uint8_t out_buf2[2]; //no data reply
+uint8_t out_buf3[3]; //8bit reply
+uint8_t out_buf4[4]; // 16bit reply
 
 
 void resp3();
 void resp2();
+void resp4();
 
 extern uint8_t reg_out;
 

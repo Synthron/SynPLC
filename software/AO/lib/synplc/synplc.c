@@ -107,6 +107,7 @@ void parse_485 (void)
           switch (reg_485)
           {
           case REG_OUT:
+          case REG_ERR:
             reg_out = dat8_485;
             errflag_485 &= ~ERR_REG;
             break;
@@ -121,7 +122,7 @@ void parse_485 (void)
           errflag_485 |= ERR_REG;
       }
       // DI
-      if(devtype == DEV_DI)
+      else if(devtype == DEV_DI)
       {
         if(inst_485 == CMD_R8)
         {
@@ -134,6 +135,41 @@ void parse_485 (void)
           errflag_485 |= ERR_INST;
       }
       // AO
+      else if(devtype == DEV_AO)
+      {
+        switch (inst_485)
+        {
+          case CMD_W16:
+            switch (reg_485)
+            {
+              case REG_CH1:
+              case REG_CH2:
+              case REG_CH3:
+              case REG_CH4:
+                dac_out[reg_485 - REG_CH1] = dat16_485;
+                errflag_485 &= ~ERR_REG;
+                break;
+              
+              default:
+                errflag_485 |= ERR_REG;
+                break;
+            }
+            break;
+
+          case CMD_R8:
+            if(REG_ERR)
+              errflag_485 &= ~ERR_REG;
+            else
+              errflag_485 |= ERR_REG;
+            break;
+                    
+          default:
+            errflag_485 |= ERR_INST;
+            break;
+        
+        
+        }
+      }
       // AI
     }
   }
@@ -216,6 +252,16 @@ void resp3()
     delay_us(10);
 }
 
+void resp4()
+{
+    delay_us(10);
+    HAL_GPIO_WritePin(GPIOB, GPIO_PIN_12, 1);
+    delay_us(1);
+    HAL_UART_Transmit(&huart3, out_buf4, 4, 1);
+    delay_us(1);
+    HAL_GPIO_WritePin(GPIOB, GPIO_PIN_12, 0);
+    delay_us(10);
+}
 /****************************************************/
 /************** µs-Timer Functions ******************/
 /****************************************************/

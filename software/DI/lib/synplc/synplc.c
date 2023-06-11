@@ -187,7 +187,6 @@ void parse_485 (void)
 
     state_485 = read_start;
     //then or else wait for new start bit
-    
     HAL_UART_Receive_IT(&huart3, RxBuffer, 1);
 
   }
