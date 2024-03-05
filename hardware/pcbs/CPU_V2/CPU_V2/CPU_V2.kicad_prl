@@ -37,7 +37,6 @@
       5,
       9,
       10,
-      11,
       12,
       13,
       14,
@@ -63,7 +62,7 @@
       35,
       36
     ],
-    "visible_layers": "ffc3123_ffffffff",
+    "visible_layers": "ffc3103_ffffffff",
     "zone_display_mode": 1
   },
   "meta": {
