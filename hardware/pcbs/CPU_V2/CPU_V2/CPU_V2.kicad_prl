@@ -37,6 +37,7 @@
       5,
       9,
       10,
+      11,
       12,
       13,
       14,
@@ -62,8 +63,14 @@
       35,
       36
     ],
-    "visible_layers": "ffc3103_ffffffff",
+    "visible_layers": "ffc3103_fffffff9",
     "zone_display_mode": 1
+  },
+  "git": {
+    "repo_password": "",
+    "repo_type": "",
+    "repo_username": "",
+    "ssh_key": ""
   },
   "meta": {
     "filename": "CPU_V2.kicad_prl",
