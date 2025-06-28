@@ -62,6 +62,7 @@ void SystemClock_Config(void);
   uint8_t address = 0;
   uint8_t shad_err = 0;
   bool panic = false;
+  uint8_t stat;
 
 
 /*
@@ -134,6 +135,9 @@ int main(void)
     set_Output();
     HAL_Delay(1);   
     check_Output();
+
+    if(stat != HAL_OK)
+      HAL_UART_Receive_IT(&huart3, RxBuffer, 1);
     
     
     //if (panic)

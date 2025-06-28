@@ -57,7 +57,7 @@ uint16_t dac_out[4];
 uint8_t dac_stat; // ||||ch4 cc/cv|ch3 cc/cv|ch2 cc/cv|ch1 cc/cv
 
 void init_485 (uint8_t addr);
-void parse_485(void);
+uint8_t parse_485(void);
 
 enum prot_states {read_start, read_addr_inst, read_dat_cs, write_answ, wait_answ};
 

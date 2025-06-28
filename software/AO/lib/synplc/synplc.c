@@ -12,19 +12,20 @@ void init_485 (uint8_t addr)
   errflag_485 = 0;
 }
 
-void parse_485 (void)
+uint8_t parse_485 (void)
 {
+  uint8_t hal_stat;
   //Wait for correct start byte
   if(state_485 == read_start)
   {
     if(RxBuffer[0] == START)
     {
-      HAL_UART_Receive_IT(&huart3, RxBuffer, 2);
+      hal_stat = HAL_UART_Receive_IT(&huart3, RxBuffer, 2);
       state_485 = read_addr_inst;
     }
     else
     {
-      HAL_UART_Receive_IT(&huart3, RxBuffer, 1);
+      hal_stat = HAL_UART_Receive_IT(&huart3, RxBuffer, 1);
     }
   }
 
@@ -41,18 +42,19 @@ void parse_485 (void)
     case CMD_R16:
     case CMD_R8:
       state_485 = read_dat_cs;
-      HAL_UART_Receive_IT(&huart3, RxBuffer, 1);
+      hal_stat = HAL_UART_Receive_IT(&huart3, RxBuffer, 1);
       errflag_485 &= ~ERR_INST;
       break;
     case CMD_W8:
       state_485 = read_dat_cs;
-      HAL_UART_Receive_IT(&huart3, RxBuffer, 2);
+      hal_stat = HAL_UART_Receive_IT(&huart3, RxBuffer, 2);
       errflag_485 &= ~ERR_INST;
       break;
     case CMD_W16:
       state_485 = read_dat_cs;
-      HAL_UART_Receive_IT(&huart3, RxBuffer, 3);
+      hal_stat = HAL_UART_Receive_IT(&huart3, RxBuffer, 3);
       errflag_485 &= ~ERR_INST;
+      break;
     default:
       state_485 = read_start;
       errflag_485 |= ERR_INST;
@@ -60,6 +62,7 @@ void parse_485 (void)
       __disable_irq();
       delay_us(50);
       __enable_irq();
+      hal_stat = HAL_UART_Receive_IT(&huart3, RxBuffer, 1);
       break;
     }
   }
@@ -172,10 +175,7 @@ void parse_485 (void)
       }
       // AI
     }
-  }
 
-  if(state_485 == write_answ)
-  {
     //if slave is correct
     if(address_485 == slave_485)
     {
@@ -224,9 +224,12 @@ void parse_485 (void)
     state_485 = read_start;
     //then or else wait for new start bit
     
-    HAL_UART_Receive_IT(&huart3, RxBuffer, 1);
-
+    hal_stat = HAL_UART_Receive_IT(&huart3, RxBuffer, 1);
   }
+
+  else
+    hal_stat = HAL_UART_Receive_IT(&huart3, RxBuffer, 1);
+  return hal_stat;
 }
 
 

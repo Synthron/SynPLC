@@ -101,8 +101,8 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_CAN1_Init();
-  MX_RTC_Init();
-  MX_SDIO_SD_Init();
+  //MX_RTC_Init();
+  //MX_SDIO_SD_Init();
   MX_TIM1_Init();
   MX_TIM2_Init();
   MX_TIM3_Init();
@@ -113,7 +113,7 @@ int main(void)
   MX_TIM12_Init();
   MX_USART1_UART_Init();
   MX_USART2_UART_Init();
-  MX_FATFS_Init();
+  //MX_FATFS_Init();
   MX_USB_DEVICE_Init();
   MX_I2C1_Init();
   MX_SPI2_Init();
@@ -126,12 +126,12 @@ int main(void)
   HAL_Delay(500);
 
 
-//  uint8_t count = 0x0;
+  uint8_t count = 0x0;
 
-/*  uint8_t data1[5] = {0X5A, 0x21, 0x21, 0, 0};
+  uint8_t data1[5] = {0X5A, 0x21, 0x21, 0, 0};
   uint8_t data2[5] = {0X5A, 0x03, 0x10, 0, 0};
   uint8_t data3[5] = {0X5A, 0x22, 0x21, 0, 0};
-  uint8_t data4[5] = {0X5A, 0x04, 0x10, 0, 0};*/
+  uint8_t data4[5] = {0X5A, 0x04, 0x10, 0, 0};
   uint8_t rec[5] = {0,0,0,0,0};
   uint8_t data_ao[6] = {0x5A, 0x60, 0, 0, 0, 0};
   uint16_t ao_val = 0;
@@ -155,25 +155,28 @@ int main(void)
     send_485(data4, 4);
 
     delay_us(50);
-
+*/
 //write DO
+/*
     count = rand();
     data1[3] = count;
     data1[4] = data1[0] ^ data1[1] ^ data1[2] ^ data1[3] ^ 0xC5;
     send_485(data1, 5);
     HAL_UART_Receive(&huart1, rec, 2, 10);
 
-    HAL_Delay(50);
+    HAL_Delay(500);
+    */
 
-    count = rand();
-    data3[3] = count;
-    data3[4] = data3[0] ^ data3[1] ^ data3[2] ^ data3[3] ^ 0xC5;
-    send_485(data3, 5);
-    HAL_UART_Receive(&huart1, rec, 2, 10);
+//    count = rand();
+//    data3[3] = count;
+//    data3[4] = data3[0] ^ data3[1] ^ data3[2] ^ data3[3] ^ 0xC5;
+//    send_485(data3, 5);
+//    HAL_UART_Receive(&huart1, rec, 2, 10);
 
-    HAL_Delay(50);
-*/
+//    HAL_Delay(50);
+
 //write AO
+
     for(int i = 0; i < 4; i++)
     {
       data_ao[2] = 0x64 + i;
@@ -182,14 +185,17 @@ int main(void)
       data_ao[5] = data_ao[0] ^ data_ao[1] ^ data_ao[2] ^ data_ao[3] ^ data_ao[4] ^ 0xC5;
       send_485(data_ao, 6);
       HAL_UART_Receive(&huart1, rec, 2, 100);
-      HAL_Delay(200);
+      HAL_Delay(10);
     }
-    ao_val += 1000;
+    ao_val += 100;
     if(ao_val > 10000)
     {
       ao_val = 0;
     }
-      HAL_Delay(2000);
+      
+    HAL_Delay(10);
+    
+    HAL_GPIO_TogglePin(LED_BOOT_GPIO_Port, LED_BOOT_Pin);
   }
   /* USER CODE END 3 */
 }

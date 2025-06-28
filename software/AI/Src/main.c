@@ -6,7 +6,7 @@
   ******************************************************************************
   * @attention
   *
-  * Copyright (c) 2022 STMicroelectronics.
+  * Copyright (c) 2025 STMicroelectronics.
   * All rights reserved.
   *
   * This software is licensed under terms that can be found in the LICENSE file
@@ -19,7 +19,6 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "can.h"
-#include "crc.h"
 #include "i2c.h"
 #include "tim.h"
 #include "usart.h"
@@ -27,7 +26,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "synplc.h"
+
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -48,25 +47,17 @@
 
 /* USER CODE BEGIN PV */
 
-bool update = 1;
-uint8_t state;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 /* USER CODE BEGIN PFP */
-void Slave_Init(void);
-void write_single(uint8_t channel, uint16_t output_raw);
-void write_all(uint16_t *data);
-void convert_dacs(uint16_t *data, uint8_t modes);
+
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-#define MCP_ADDR 0b11000100
 
-uint8_t address = 0;
-uint16_t dac_vals[4],dac_vals_old[4];
 /* USER CODE END 0 */
 
 /**
@@ -76,7 +67,7 @@ uint16_t dac_vals[4],dac_vals_old[4];
 int main(void)
 {
   /* USER CODE BEGIN 1 */
-  //HAL_I2C_Master_Transmit(&hi2c1, MCP_ADDR, );
+
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -98,20 +89,12 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_CAN_Init();
-  MX_CRC_Init();
-  MX_USART3_UART_Init();
   MX_I2C1_Init();
   MX_TIM1_Init();
+  MX_TIM2_Init();
+  MX_USART3_UART_Init();
   /* USER CODE BEGIN 2 */
-  timer_init();
-  Slave_Init();
-  init_485(address);
 
-  HAL_GPIO_WritePin(LED_Ch1_GPIO_Port, LED_Ch1_Pin, 1);
-  __enable_irq();
-  HAL_Delay(5);
-  state = HAL_UART_Receive_IT(&huart3, RxBuffer, 1);
-  
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -121,30 +104,6 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-
-    //set DAC values
-    convert_dacs(dac_out, dac_stat);
-    //update DAC values after values have been changed
-
-    //update dacs
-    write_all(dac_vals);
-      //for(uint8_t i = 0; i < 4; i++)
-      //  dac_vals_old[i] = dac_vals[i];
-
-    //set LEDs
-    /*for(int i = 0; i < 4; i++)
-    {
-      if(dac_out[i] != 0)
-        HAL_GPIO_WritePin(CC1_GPIO_Port, CC1_Pin + i, 1);
-      else
-        HAL_GPIO_WritePin(CC1_GPIO_Port, CC1_Pin + i, 0);
-    }
-*/
-    if(state != HAL_OK)
-      HAL_UART_Receive_IT(&huart3, RxBuffer, 1);
-
-    
-  HAL_Delay(100);
   }
   /* USER CODE END 3 */
 }
@@ -189,61 +148,6 @@ void SystemClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
-
-void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
-{
-
-  state = parse_485();
-
-  HAL_GPIO_TogglePin(LED_Ch1_GPIO_Port, LED_Ch1_Pin);
-}
-
-void convert_dacs(uint16_t *data, uint8_t modes)
-{
-  for(int i = 0; i < 4; i++)
-  {
-    if(modes & (0x01 << i)) // CC mode
-      dac_vals[i] = data[i] / 5;
-    else 
-      dac_vals[i] = (uint16_t)((float)data[i] / 2.5);
-    
-    if(dac_vals_old[i] != dac_vals[i]) 
-      update = 1;
-  }
-}
-
-void Slave_Init(void)
-{
-  address = 0x60 + (GPIOA->IDR & 0x1F);
-  GPIOA->ODR &= ~(0x1FE0); // set relais and LEDs to off
-  HAL_GPIO_WritePin(DIR_GPIO_Port, DIR_Pin, 0); // set Direction to read
-}
-
-void write_single(uint8_t channel, uint16_t output_raw)
-{
-  HAL_Delay(20);
-  uint8_t data[4];
-  data[0] = 0x58 | ((channel << 1)&0x06); //single write, update after last acknowledge
-  data[1] = 0x90 | ((output_raw >> 8)& 0x0F);
-  data[2] = output_raw & 0x00FF;
-  HAL_I2C_Master_Transmit(&hi2c1, MCP_ADDR, data, 3, 1);
-}
-
-void write_all(uint16_t *data)
-{
-  //HAL_Delay(25);
-  uint8_t send_dat[8];
-  send_dat[0] = (data[0] >> 8) & 0x0F;
-  send_dat[1] = data[0] & 0x00FF;
-  send_dat[2] = (data[1] >> 8) & 0x0F;
-  send_dat[3] = data[1] & 0x00FF;
-  send_dat[4] = (data[2] >> 8) & 0x0F;
-  send_dat[5] = data[2] & 0x00FF;
-  send_dat[6] = (data[3] >> 8) & 0x0F;
-  send_dat[7] = data[3] & 0x00FF;
-  HAL_I2C_Master_Transmit(&hi2c1, MCP_ADDR, send_dat, 8, 1);
-
-}
 
 /* USER CODE END 4 */
 

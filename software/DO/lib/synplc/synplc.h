@@ -56,7 +56,7 @@ uint16_t adc_in[4];
 uint16_t dac_out[4];
 
 void init_485 (uint8_t addr);
-void parse_485(void);
+uint8_t parse_485(void);
 
 enum prot_states {read_start, read_addr_inst, read_dat_cs, write_answ, wait_answ};
 
