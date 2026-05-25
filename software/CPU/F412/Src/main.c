@@ -31,7 +31,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "synplc_cpu.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -119,6 +119,10 @@ int main(void)
   MX_SPI2_Init();
   /* USER CODE BEGIN 2 */
   Init_LEDs();
+  
+  // Turn on LED_BOOT during initialization
+  HAL_GPIO_WritePin(LED_BOOT_GPIO_Port, LED_BOOT_Pin, 1);
+  
   timer_init();
 
   HAL_GPIO_WritePin(RS485_DIR_GPIO_Port, RS485_DIR_Pin, 0);
@@ -135,10 +139,28 @@ int main(void)
   uint8_t rec[5] = {0,0,0,0,0};
   uint8_t data_ao[6] = {0x5A, 0x60, 0, 0, 0, 0};
   uint16_t ao_val = 0;
+  
+  // Turn off LED_BOOT after initialization
+  HAL_GPIO_WritePin(LED_BOOT_GPIO_Port, LED_BOOT_Pin, 0);
+  
+  // Initialize heartbeat timing
+  uint32_t last_heartbeat_toggle = HAL_GetTick();
+  
+  // Initialize error state
+  uint8_t error_flag = 0;
+  uint32_t last_error_toggle = HAL_GetTick();
+  uint8_t error_blink_count = 0;
+
+  // Initialize SynPLC CPU library
+  synplc_cpu_init();
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+  
+  // Turn on LED_RUN to indicate PLC is running
+  HAL_GPIO_WritePin(LED_RUN_GPIO_Port, LED_RUN_Pin, 1);
+  
   while (1)
   {
     /* USER CODE END WHILE */
@@ -179,14 +201,20 @@ int main(void)
 
     for(int i = 0; i < 4; i++)
     {
-      data_ao[2] = 0x64 + i;
-      data_ao[3] = ao_val & 0xFF;
-      data_ao[4] = (ao_val >> 8) & 0xFF;
-      data_ao[5] = data_ao[0] ^ data_ao[1] ^ data_ao[2] ^ data_ao[3] ^ data_ao[4] ^ 0xC5;
-      send_485(data_ao, 6);
-      HAL_UART_Receive(&huart1, rec, 2, 100);
+      // Use the new SynPLC library to write analog output
+      uint8_t error = synplc_write_analog_output(0, i, ao_val);
+      if (error != SYNPLC_ERR_NONE) {
+        error_flag = 1;  // Set error flag on communication failure
+      }
       HAL_Delay(10);
     }
+
+    // Example usage of other library functions:
+    // uint8_t di_data;
+    // synplc_read_digital_input(1, &di_data);
+    // synplc_write_digital_output(2, 0xFF);
+    // uint16_t ai_value;
+    // synplc_read_analog_input(3, 0, &ai_value);
     ao_val += 100;
     if(ao_val > 10000)
     {
@@ -195,7 +223,26 @@ int main(void)
       
     HAL_Delay(10);
     
-    HAL_GPIO_TogglePin(LED_BOOT_GPIO_Port, LED_BOOT_Pin);
+    // Heartbeat LED at 1Hz (toggle every 500ms)
+    uint32_t current_time = HAL_GetTick();
+    if (current_time - last_heartbeat_toggle >= 500) {
+      HAL_GPIO_TogglePin(LED_HEARTBEAT_GPIO_Port, LED_HEARTBEAT_Pin);
+      last_heartbeat_toggle = current_time;
+    }
+    
+    // Error LED blinking (2Hz when error_flag is set)
+    if (error_flag) {
+      if (current_time - last_error_toggle >= 250) {  // 250ms for 2Hz blinking
+        HAL_GPIO_TogglePin(LED_ERROR_GPIO_Port, LED_ERROR_Pin);
+        last_error_toggle = current_time;
+        error_blink_count++;
+        if (error_blink_count >= 10) {  // Blink for 5 seconds (10 * 250ms * 2)
+          error_flag = 0;
+          error_blink_count = 0;
+          HAL_GPIO_WritePin(LED_ERROR_GPIO_Port, LED_ERROR_Pin, 0);  // Ensure LED is off
+        }
+      }
+    }
   }
   /* USER CODE END 3 */
 }
@@ -276,13 +323,13 @@ void PeriphCommonClock_Config(void)
 
 void send_485(uint8_t *data, uint8_t bytes)
 {
-  HAL_GPIO_WritePin(RS485_DIR_GPIO_Port, RS485_DIR_Pin, 1);    
-  HAL_GPIO_WritePin(LED_RUN_GPIO_Port, LED_RUN_Pin, 1); 
+  HAL_GPIO_WritePin(RS485_DIR_GPIO_Port, RS485_DIR_Pin, 1);
+  HAL_GPIO_WritePin(LED_FLASH_GPIO_Port, LED_FLASH_Pin, 1);  // Turn on during transmission
   delay_us(1);
   HAL_UART_Transmit(&huart1, data, bytes, 1);
   delay_us(1);
   HAL_GPIO_WritePin(RS485_DIR_GPIO_Port, RS485_DIR_Pin, 0);
-  HAL_GPIO_WritePin(LED_RUN_GPIO_Port, LED_RUN_Pin, 0); 
+  HAL_GPIO_WritePin(LED_FLASH_GPIO_Port, LED_FLASH_Pin, 0);  // Turn off after transmission
 }
 
 void timer_init(void)
